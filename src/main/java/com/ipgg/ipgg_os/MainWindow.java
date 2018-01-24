@@ -23,9 +23,11 @@ public class MainWindow extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         //FormLayout telaS = new TelaSolicitacao();
     	//FormLayout telaF = new TelaFeedBack();
+    	FormLayout telaA = new TelaAvaliacao();
         
         //setContent(telaS);
-        //setContent(telaS);
+        //setContent(telaF);
+    	setContent(telaA);
         setSizeFull();
     }
 

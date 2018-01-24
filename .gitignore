@@ -22,4 +22,10 @@
 hs_err_pid*
 
 # Dirs
+bin/
 target/
+.settings/
+
+# Eclipse
+.classpath
+.project

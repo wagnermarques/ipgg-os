@@ -38,15 +38,15 @@ public class TelaSolicitacao extends FormLayout {
 		grauNecessidade = new ComboBox<>("Grau de necessidade");
 		rechamado = new TextField("Rechamado");
 		osAnterior = new TextField("O.S. anterior");
-		
+
 		confirmar = new Button("Confirmar");
 		cancelar = new Button("Cancelar");
-		
+
 		HorizontalLayout footer = new HorizontalLayout();
-		
+
 		nos.setEnabled(false);
 		osAnterior.setEnabled(false);
-		
+
 		addComponent(nos);
 		addComponent(solicitante);
 		addComponent(gerencia);
@@ -60,7 +60,7 @@ public class TelaSolicitacao extends FormLayout {
 		addComponent(grauNecessidade);
 		addComponent(rechamado);
 		addComponent(osAnterior);
-		
+
 		footer.addComponent(confirmar);
 		footer.addComponent(cancelar);
 		addComponent(footer);
