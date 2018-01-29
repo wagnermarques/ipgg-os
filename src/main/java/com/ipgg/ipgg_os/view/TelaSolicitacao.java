@@ -1,5 +1,6 @@
 package com.ipgg.ipgg_os.view;
 
+import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
@@ -7,7 +8,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
-public class TelaSolicitacao extends FormLayout {
+public class TelaSolicitacao extends FormLayout implements View {
 	private TextField nos;
 	private ComboBox<String> solicitante;
 	private TextField gerencia;

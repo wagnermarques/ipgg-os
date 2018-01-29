@@ -1,5 +1,6 @@
 package com.ipgg.ipgg_os.view;
 
+import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
@@ -8,10 +9,10 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
-public class TelaAvaliacao extends FormLayout {
+public class TelaAvaliacao extends FormLayout implements View {
 	private TextField nos;
 	private ComboBox<String> manutencao;
-	private ComboBox<String> tenico;
+	private ComboBox<String> tecnico;
 	private ComboBox<String> statusServico;
 	private TextArea descricaoServico;
 	private ComboBox<String> tipoDefeito;
@@ -25,7 +26,7 @@ public class TelaAvaliacao extends FormLayout {
 	public TelaAvaliacao() {
 		nos = new TextField("Nº O. S.");
 		manutencao = new ComboBox<>("Manutenção");
-		tenico = new ComboBox<String>("Técnico");
+		tecnico = new ComboBox<String>("Técnico");
 		statusServico = new ComboBox<String>("Status Serviço");
 		descricaoServico = new TextArea("Descrição");
 		tipoDefeito = new ComboBox<>("Tipo do Defeito");
@@ -44,7 +45,7 @@ public class TelaAvaliacao extends FormLayout {
 		
 		addComponent(nos);
 		addComponent(manutencao);
-		addComponent(tenico);
+		addComponent(tecnico);
 		addComponent(statusServico);
 		addComponent(descricaoServico);
 		addComponent(tipoDefeito);
