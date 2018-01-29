@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os;
+package com.ipgg.ipgg_os.view;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -8,21 +8,21 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaSolicitacao extends FormLayout {
-	TextField nos;
-	ComboBox<String> solicitante;
-	TextField gerencia;
-	TextField diretoria;
-	ComboBox<String> local;
-	ComboBox<String> servico;
-	ComboBox<String> tipoServico;
-	TextField bemPatrimonial;
-	TextField nPatrimonio;
-	TextArea descricaoServico;
-	ComboBox<String> grauNecessidade;
-	TextField rechamado;
-	TextField osAnterior;
-	Button confirmar;
-	Button cancelar;
+	private TextField nos;
+	private ComboBox<String> solicitante;
+	private TextField gerencia;
+	private TextField diretoria;
+	private ComboBox<String> local;
+	private ComboBox<String> servico;
+	private ComboBox<String> tipoServico;
+	private TextField bemPatrimonial;
+	private TextField nPatrimonio;
+	private TextArea descricaoServico;
+	private ComboBox<String> grauNecessidade;
+	private TextField rechamado;
+	private TextField osAnterior;
+	private Button confirmar;
+	private Button cancelar;
 
 	public TelaSolicitacao() {
 		nos = new TextField("Nº O.S.");

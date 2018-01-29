@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os;
+package com.ipgg.ipgg_os.view;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -9,18 +9,18 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaAvaliacao extends FormLayout {
-	TextField nos;
-	ComboBox<String> manutencao;
-	ComboBox<String> tenico;
-	ComboBox<String> statusServico;
-	TextArea descricaoServico;
-	ComboBox<String> tipoDefeito;
-	TextArea descricaoDefeito;
-	TextField recebimentoServico;
-	DateField data;
-	Button confirmar;
-	Button cancelar;
-	Button finalizar;
+	private TextField nos;
+	private ComboBox<String> manutencao;
+	private ComboBox<String> tenico;
+	private ComboBox<String> statusServico;
+	private TextArea descricaoServico;
+	private ComboBox<String> tipoDefeito;
+	private TextArea descricaoDefeito;
+	private TextField recebimentoServico;
+	private DateField data;
+	private Button confirmar;
+	private Button cancelar;
+	private Button finalizar;
 	
 	public TelaAvaliacao() {
 		nos = new TextField("Nº O. S.");

@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os;
+package com.ipgg.ipgg_os.view;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
@@ -7,15 +7,15 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaFeedBack extends FormLayout {
-	TextField nos;
-	TextField gerencia;
-	TextField diretoria;
-	TextField local;
-	TextField servico;
-	TextField tipoServico;
-	TextArea posicionamento;
-	Button confirmar;
-	Button cancelar;
+	private TextField nos;
+	private TextField gerencia;
+	private TextField diretoria;
+	private TextField local;
+	private TextField servico;
+	private TextField tipoServico;
+	private TextArea posicionamento;
+	private Button confirmar;
+	private Button cancelar;
 
 	public TelaFeedBack() {
 		nos = new TextField("Nº O.S.");

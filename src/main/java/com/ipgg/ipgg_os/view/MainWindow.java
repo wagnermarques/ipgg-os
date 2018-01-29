@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os;
+package com.ipgg.ipgg_os.view;
 
 import javax.servlet.annotation.WebServlet;
 
