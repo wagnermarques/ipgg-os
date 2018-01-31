@@ -49,17 +49,43 @@ public class TelaSolicitacao extends FormLayout implements View {
 		osAnterior.setEnabled(false);
 		
 		nos.setDescription("Nº da Ordem de Serviço");
+		nos.setWidth("80%");
+
 		solicitante.setDescription("Solicitante autorizado");
+		solicitante.setWidth("80%");
+
 		gerencia.setDescription("Gerência");
+		gerencia.setWidth("80%");
+
 		diretoria.setDescription("Diretoria");
+		diretoria.setWidth("80%");
+
 		local.setDescription("Locais disponíveis");
+		local.setWidth("80%");
+
 		servico.setDescription("Serviço desejado");
+		servico.setWidth("80%");
+
 		tipoServico.setDescription("Tipo de serviço");
-		nPatrimonio.setDescription("Número do patromônio");
+		tipoServico.setWidth("80%");
+
+		bemPatrimonial.setDescription("Bem patrimonial");
+		bemPatrimonial.setWidth("80%");
+
+		nPatrimonio.setDescription("Número do patrimônio");
+		nPatrimonio.setWidth("80%");
+
 		descricaoServico.setDescription("Descrição do serviço");
+		descricaoServico.setWidth("80%");
+
 		grauNecessidade.setDescription("Grau de necessidade");
+		grauNecessidade.setWidth("80%");
+
 		rechamado.setDescription("Rechamado");
-		osAnterior.setDescription("Número da O.S. anteior");
+		rechamado.setWidth("80%");
+
+		osAnterior.setDescription("Número da O.S. anterior");
+		osAnterior.setWidth("80%");
 
 		addComponent(nos);
 		addComponent(solicitante);

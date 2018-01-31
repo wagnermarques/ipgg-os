@@ -33,12 +33,32 @@ public class TelaFeedBack extends FormLayout implements View {
 		
 		nos.setEnabled(false);
 		
+		nos.setDescription("Nº da Ordem de Serviço");
+		nos.setWidth("80%");
+
+		gerencia.setDescription("Gerência");
+		gerencia.setWidth("80%");
+
+		diretoria.setDescription("Diretoria");
+		diretoria.setWidth("80%");
+
+		local.setDescription("Local Disponível");
+		local.setWidth("80%");
+
+		servico.setDescription("Serviço");
+		servico.setWidth("80%");
+
+		tipoServico.setDescription("Tipo de Serviço");
+		tipoServico.setWidth("80%");
+
+		posicionamento.setDescription("Posicionamento");
+		posicionamento.setWidth("80%");
+		
 		addComponent(nos);
 		addComponent(gerencia);
 		addComponent(diretoria);
 		addComponent(local);
 		addComponent(servico);
-		addComponent(tipoServico);
 		addComponent(tipoServico);
 		addComponent(posicionamento);
 		

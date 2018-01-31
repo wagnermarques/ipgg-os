@@ -21,13 +21,13 @@ public class MainWindow extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        FormLayout telaS = new TelaSolicitacao();
+        //FormLayout telaS = new TelaSolicitacao();
     	//FormLayout telaF = new TelaFeedBack();
-    	//FormLayout telaA = new TelaAvaliacao();
+    	FormLayout telaA = new TelaAvaliacao();
         
-        setContent(telaS);
+        //setContent(telaS);
         //setContent(telaF);
-    	//setContent(telaA);
+    	setContent(telaA);
         setSizeFull();
     }
 

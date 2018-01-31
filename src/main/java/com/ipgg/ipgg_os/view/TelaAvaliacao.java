@@ -42,6 +42,32 @@ public class TelaAvaliacao extends FormLayout implements View {
 		HorizontalLayout finalizarFooter = new HorizontalLayout();
 		
 		nos.setEnabled(false);
+		nos.setDescription("Número da Ordem de serviço");
+		nos.setWidth("80%");
+		
+		manutencao.setDescription("Manutenção");
+		manutencao.setWidth("80%");
+		
+		tecnico.setDescription("Técnico responsável");
+		tecnico.setWidth("80%");
+		
+		statusServico.setDescription("Status do serviço");
+		statusServico.setWidth("80%");
+		
+		descricaoServico.setDescription("Descrição do serviço");
+		descricaoServico.setWidth("80%");
+		
+		tipoDefeito.setDescription("Tipo de defeito identificado");
+		tipoDefeito.setWidth("80%");
+		
+		descricaoDefeito.setDescription("Descrição do defeito");
+		descricaoDefeito.setWidth("80%");
+		
+		recebimentoServico.setDescription("Recebimento do serviço");
+		recebimentoServico.setWidth("80%");
+		
+		data.setDescription("Data");
+		data.setWidth("30%");
 		
 		addComponent(nos);
 		addComponent(manutencao);
