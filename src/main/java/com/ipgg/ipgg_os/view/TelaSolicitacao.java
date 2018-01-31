@@ -1,14 +1,18 @@
 package com.ipgg.ipgg_os.view;
 
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaSolicitacao extends FormLayout implements View {
+	protected static final String VIEW_NAME = "tela_solicitacao";
+
 	private TextField nos;
 	private ComboBox<String> solicitante;
 	private TextField gerencia;
@@ -103,5 +107,10 @@ public class TelaSolicitacao extends FormLayout implements View {
 		footer.addComponent(confirmar);
 		footer.addComponent(cancelar);
 		addComponent(footer);
+	}
+	
+	@Override
+    public void enter(ViewChangeEvent event) {
+        Notification.show("Bem-vindo, teste 3.");
 	}
 }

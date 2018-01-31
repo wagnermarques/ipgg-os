@@ -4,10 +4,14 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Clederson Cruz
@@ -17,18 +21,15 @@ import com.vaadin.ui.UI;
  * através do controle de ordem de serviço.
  */
 @Theme("meutema")
-public class MainWindow extends UI {
+public class MainWindow extends UI implements View {
+	private Button feedback;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        //FormLayout telaS = new TelaSolicitacao();
-    	//FormLayout telaF = new TelaFeedBack();
-    	FormLayout telaA = new TelaAvaliacao();
-        
-        //setContent(telaS);
-        //setContent(telaF);
-    	setContent(telaA);
-        setSizeFull();
+    	MainView mainView = new MainView();
+    	getPage().setTitle("IPPG OS");
+    	setSizeFull();
+    	setContent(mainView);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MainWindowServlet", asyncSupported = true)

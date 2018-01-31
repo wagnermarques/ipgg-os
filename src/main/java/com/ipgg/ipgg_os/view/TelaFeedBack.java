@@ -1,13 +1,17 @@
 package com.ipgg.ipgg_os.view;
 
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaFeedBack extends FormLayout implements View {
+	protected static final String VIEW_NAME = "tela_feedback";
+
 	private TextField nos;
 	private TextField gerencia;
 	private TextField diretoria;
@@ -65,5 +69,10 @@ public class TelaFeedBack extends FormLayout implements View {
 		footer.addComponent(confirmar);
 		footer.addComponent(cancelar);
 		addComponent(footer);
+	}
+	
+	@Override
+    public void enter(ViewChangeEvent event) {
+        Notification.show("Bem-vindo, teste 2.");
 	}
 }
