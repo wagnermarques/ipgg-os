@@ -8,12 +8,14 @@ import com.vaadin.ui.VerticalLayout;
 public class MainView extends VerticalLayout implements View {
 	protected static final String VIEW_NAME = "main";
 
+	private MainWindow mainWindow;
 	private Navigator navigator;
 	private Button avaliacao;
 	private Button solicitacao;
 	private Button feedback;
 	
-	public MainView() {
+	public MainView(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		avaliacao = new Button("Avaliação");
 		solicitacao = new Button("Solicitação");
 		feedback = new Button("Feedback");
@@ -22,7 +24,7 @@ public class MainView extends VerticalLayout implements View {
     	TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
     	TelaFeedBack telaFeedBack = new TelaFeedBack();
 
-    	// navigator = new Navigator();
+    	navigator = new Navigator(mainWindow, mainWindow);
     	navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
     	navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
     	navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);

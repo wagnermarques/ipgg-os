@@ -89,7 +89,6 @@ public class TelaAvaliacao extends FormLayout implements View {
 		footer.addComponent(confirmar);
 		footer.addComponent(cancelar);
 		finalizarFooter.addComponent(finalizar);
-		setComponentAlignment(finalizar, Alignment.MIDDLE_CENTER);
 		addComponent(footer);
 		addComponent(finalizarFooter);
 	}

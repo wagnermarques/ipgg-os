@@ -21,15 +21,14 @@ import com.vaadin.ui.VerticalLayout;
  * através do controle de ordem de serviço.
  */
 @Theme("meutema")
-public class MainWindow extends UI implements View {
-	private Button feedback;
+public class MainWindow extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-    	MainView mainView = new MainView();
+    	MainView mainView = new MainView(this);
     	getPage().setTitle("IPPG OS");
-    	setSizeFull();
     	setContent(mainView);
+    	setSizeFull();
     }
 
     @WebServlet(urlPatterns = "/*", name = "MainWindowServlet", asyncSupported = true)
