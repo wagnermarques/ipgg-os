@@ -24,7 +24,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 	private TextField nPatrimonio;
 	private TextArea descricaoServico;
 	private ComboBox<String> grauNecessidade;
-	private TextField rechamado;
+	private ComboBox<String> rechamado;
 	private TextField osAnterior;
 	private Button confirmar;
 	private Button cancelar;
@@ -41,7 +41,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		nPatrimonio = new TextField("Nº de Patrimônio");
 		descricaoServico = new TextArea("Descrição do Serviço a ser realizado");
 		grauNecessidade = new ComboBox<>("Grau de necessidade");
-		rechamado = new TextField("Rechamado");
+		rechamado = new ComboBox<>("Rechamado");
 		osAnterior = new TextField("O.S. anterior");
 
 		confirmar = new Button("Confirmar");
@@ -67,10 +67,23 @@ public class TelaSolicitacao extends FormLayout implements View {
 		local.setDescription("Locais disponíveis");
 		local.setWidth("80%");
 
-		servico.setDescription("Serviço desejado");
+		servico.setDescription("Serviço solicitado");
+		String servicoItens[] = {
+			"Manutenção Corretiva", "Manutenção Preventiva",
+			"Instalação", "Calibração"
+		};
+		servico.setEmptySelectionAllowed(false);
+		servico.setItems(servicoItens);
 		servico.setWidth("80%");
 
 		tipoServico.setDescription("Tipo de serviço");
+		String tipoServicoItens[] = {
+				"Alvenaria", "Chaveiro", "Elétrica",
+				"Hidráulica", "Marcenaria", "Mobiliário/Equipamentos",
+				"Pintura", "Serralheria", "Outros"
+		};
+		tipoServico.setEmptySelectionAllowed(false);
+		tipoServico.setItems(tipoServicoItens);
 		tipoServico.setWidth("80%");
 
 		bemPatrimonial.setDescription("Bem patrimonial");
@@ -83,9 +96,19 @@ public class TelaSolicitacao extends FormLayout implements View {
 		descricaoServico.setWidth("80%");
 
 		grauNecessidade.setDescription("Grau de necessidade");
+		String grauNecessidadeItens[] = {
+			"Normal", "Urgência", "Emergência"
+		};
+		grauNecessidade.setEmptySelectionAllowed(false);
+		grauNecessidade.setItems(grauNecessidadeItens);
 		grauNecessidade.setWidth("80%");
 
 		rechamado.setDescription("Rechamado");
+		String rechamdoItens[] = {
+			"Não", "Sim"
+		};
+		rechamado.setEmptySelectionAllowed(false);
+		rechamado.setItems(rechamdoItens);
 		rechamado.setWidth("80%");
 
 		osAnterior.setDescription("Número da O.S. anterior");

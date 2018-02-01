@@ -6,16 +6,12 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 
 public class MainView extends VerticalLayout implements View {
-	protected static final String VIEW_NAME = "main";
-
-	private MainWindow mainWindow;
 	private Navigator navigator;
 	private Button avaliacao;
 	private Button solicitacao;
 	private Button feedback;
 	
 	public MainView(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
 		avaliacao = new Button("Avaliação");
 		solicitacao = new Button("Solicitação");
 		feedback = new Button("Feedback");
@@ -25,6 +21,7 @@ public class MainView extends VerticalLayout implements View {
     	TelaFeedBack telaFeedBack = new TelaFeedBack();
 
     	navigator = new Navigator(mainWindow, mainWindow);
+    	navigator.addView("", this);
     	navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
     	navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
     	navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
@@ -32,6 +29,17 @@ public class MainView extends VerticalLayout implements View {
     	addComponent(avaliacao);
     	addComponent(solicitacao);
     	addComponent(feedback);
-    	
+
+    	avaliacao.addClickListener(
+    			(e) -> navigator.navigateTo(telaAvaliacao.VIEW_NAME)
+    	);
+
+    	solicitacao.addClickListener(
+    			(e) -> navigator.navigateTo(telaSolicitacao.VIEW_NAME)
+    	);
+
+    	feedback.addClickListener(
+    			(e) -> navigator.navigateTo(telaFeedBack.VIEW_NAME)
+    	);
 	}
 }
