@@ -1,5 +1,7 @@
 package com.ipgg.ipgg_os.view;
 
+import org.vaadin.ui.NumberField;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -11,6 +13,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaSolicitacao extends FormLayout implements View {
+	private static final long serialVersionUID = 4239276886146017740L;
 	protected static final String VIEW_NAME = "tela_solicitacao";
 
 	private TextField nos;
@@ -21,11 +24,11 @@ public class TelaSolicitacao extends FormLayout implements View {
 	private ComboBox<String> servico;
 	private ComboBox<String> tipoServico;
 	private TextField bemPatrimonial;
-	private TextField nPatrimonio;
+	private NumberField nPatrimonio;
 	private TextArea descricaoServico;
 	private ComboBox<String> grauNecessidade;
 	private ComboBox<String> rechamado;
-	private TextField osAnterior;
+	private NumberField osAnterior;
 	private Button confirmar;
 	private Button cancelar;
 
@@ -38,11 +41,11 @@ public class TelaSolicitacao extends FormLayout implements View {
 		servico = new ComboBox<>("Serviço Solicitado");
 		tipoServico = new ComboBox<>("Tipo de Serviço");
 		bemPatrimonial = new TextField("Bem Patrimonial");
-		nPatrimonio = new TextField("Nº de Patrimônio");
+		nPatrimonio = new NumberField("Nº de Patrimônio");
 		descricaoServico = new TextArea("Descrição do Serviço a ser realizado");
 		grauNecessidade = new ComboBox<>("Grau de necessidade");
 		rechamado = new ComboBox<>("Rechamado");
-		osAnterior = new TextField("O.S. anterior");
+		osAnterior = new NumberField("O.S. anterior");
 
 		confirmar = new Button("Confirmar");
 		cancelar = new Button("Cancelar");
@@ -50,8 +53,6 @@ public class TelaSolicitacao extends FormLayout implements View {
 		HorizontalLayout footer = new HorizontalLayout();
 
 		nos.setEnabled(false);
-		osAnterior.setEnabled(false);
-		
 		nos.setDescription("Nº da Ordem de Serviço");
 		nos.setWidth("80%");
 
@@ -67,50 +68,72 @@ public class TelaSolicitacao extends FormLayout implements View {
 		local.setDescription("Locais disponíveis");
 		local.setWidth("80%");
 
-		servico.setDescription("Serviço solicitado");
-		String servicoItens[] = {
-			"Manutenção Corretiva", "Manutenção Preventiva",
-			"Instalação", "Calibração"
-		};
+		servico.setDescription("Selecione o serviço desejado");
+		String servicoItens[] = { "Manutenção Corretiva", "Manutenção Preventiva", "Instalação", "Calibração" };
 		servico.setEmptySelectionAllowed(false);
+		servico.setTextInputAllowed(false);
 		servico.setItems(servicoItens);
 		servico.setWidth("80%");
 
-		tipoServico.setDescription("Tipo de serviço");
-		String tipoServicoItens[] = {
-				"Alvenaria", "Chaveiro", "Elétrica",
-				"Hidráulica", "Marcenaria", "Mobiliário/Equipamentos",
-				"Pintura", "Serralheria", "Outros"
-		};
+		tipoServico.setDescription("Selecione o tipo de serviço");
+		String tipoServicoItens[] = { "Alvenaria", "Chaveiro", "Elétrica", "Hidráulica", "Marcenaria",
+				"Mobiliário/Equipamentos", "Pintura", "Serralheria", "Outros" };
 		tipoServico.setEmptySelectionAllowed(false);
+		tipoServico.setTextInputAllowed(false);
 		tipoServico.setItems(tipoServicoItens);
 		tipoServico.setWidth("80%");
+		tipoServico.addSelectionListener((e) -> {
+			// Mobiliário/Equipamentos
+			if (tipoServico.getSelectedItem().equals(tipoServicoItens[5])) {
+				bemPatrimonial.setEnabled(true);
+				nPatrimonio.setEnabled(true);
+				Notification.show("IF");
+			} else {
+				bemPatrimonial.setEnabled(false);
+				bemPatrimonial.setValue("");
+				nPatrimonio.setEnabled(false);
+				nPatrimonio.setValue("");
+				Notification.show("ELSE");
+			}
+		});
 
 		bemPatrimonial.setDescription("Bem patrimonial");
+		bemPatrimonial.setEnabled(false);
 		bemPatrimonial.setWidth("80%");
 
 		nPatrimonio.setDescription("Número do patrimônio");
+		nPatrimonio.setEnabled(false);
 		nPatrimonio.setWidth("80%");
 
 		descricaoServico.setDescription("Descrição do serviço");
 		descricaoServico.setWidth("80%");
 
-		grauNecessidade.setDescription("Grau de necessidade");
-		String grauNecessidadeItens[] = {
-			"Normal", "Urgência", "Emergência"
-		};
+		grauNecessidade.setDescription("Selecione o grau de necessidade");
+		String grauNecessidadeItens[] = { "Normal", "Urgência", "Emergência" };
+		grauNecessidade.setSelectedItem(grauNecessidadeItens[0]);
 		grauNecessidade.setEmptySelectionAllowed(false);
+		grauNecessidade.setTextInputAllowed(false);
 		grauNecessidade.setItems(grauNecessidadeItens);
 		grauNecessidade.setWidth("80%");
 
 		rechamado.setDescription("Rechamado");
-		String rechamdoItens[] = {
-			"Não", "Sim"
-		};
+		String rechamdoItens[] = { "Sim", "Não" };
+		rechamado.setSelectedItem(rechamdoItens[1]);
 		rechamado.setEmptySelectionAllowed(false);
+		rechamado.setTextInputAllowed(false);
 		rechamado.setItems(rechamdoItens);
 		rechamado.setWidth("80%");
+		rechamado.addSelectionListener((e) -> {
+			// Sim
+			if (rechamado.getSelectedItem().equals(rechamdoItens[0])) {
+				osAnterior.setEnabled(true);
+			} else {
+				osAnterior.setEnabled(false);
+				osAnterior.setValue("");
+			}
+		});
 
+		osAnterior.setEnabled(false);
 		osAnterior.setDescription("Número da O.S. anterior");
 		osAnterior.setWidth("80%");
 
@@ -121,6 +144,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		addComponent(local);
 		addComponent(servico);
 		addComponent(tipoServico);
+		addComponent(bemPatrimonial);
 		addComponent(nPatrimonio);
 		addComponent(descricaoServico);
 		addComponent(grauNecessidade);
@@ -131,9 +155,9 @@ public class TelaSolicitacao extends FormLayout implements View {
 		footer.addComponent(cancelar);
 		addComponent(footer);
 	}
-	
+
 	@Override
-    public void enter(ViewChangeEvent event) {
-        Notification.show("Bem-vindo, teste 3.");
+	public void enter(ViewChangeEvent event) {
+		Notification.show("Bem-vindo, teste 3.");
 	}
 }
