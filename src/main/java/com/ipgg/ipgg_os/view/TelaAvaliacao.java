@@ -17,6 +17,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 	private TextField nos;
 	private ComboBox<String> manutencao;
+	private TextField contratada;
 	private ComboBox<String> tecnico;
 	private ComboBox<String> statusServico;
 	private TextArea descricaoServico;
@@ -31,6 +32,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 	public TelaAvaliacao() {
 		nos = new TextField("Nº O. S.");
 		manutencao = new ComboBox<>("Manutenção");
+		contratada = new TextField("Contratada");
 		tecnico = new ComboBox<String>("Técnico");
 		statusServico = new ComboBox<String>("Status Serviço");
 		descricaoServico = new TextArea("Descrição");
@@ -51,12 +53,39 @@ public class TelaAvaliacao extends FormLayout implements View {
 		nos.setWidth("80%");
 
 		manutencao.setDescription("Manutenção");
+		String manutencaoItens[] = {
+			"Interna", "Externa", "Contrata"
+		};
+		manutencao.setItems(manutencaoItens);
+		manutencao.setEmptySelectionAllowed(false);
+		manutencao.setTextInputAllowed(false);
+		manutencao.addSelectionListener((e) -> {
+			String item = manutencao.getSelectedItem().get();
+			String opcContratada = manutencaoItens[2];
+			if (item.equals(opcContratada)) {
+				contratada.setReadOnly(false);
+			} else {
+				contratada.setReadOnly(true);
+				contratada.setValue("");
+			}
+		});
 		manutencao.setWidth("80%");
+		
+		contratada.setDescription("Empresa contratada");
+		contratada.setReadOnly(true);
+		contratada.setWidth("80%");
 
 		tecnico.setDescription("Técnico responsável");
 		tecnico.setWidth("80%");
 
 		statusServico.setDescription("Status do serviço");
+		String statusServicoItens[] = {
+			"Concluído", "Aguardando peça",
+			"Aguardando Orçamento", "Outro"
+		};
+		statusServico.setItems(statusServicoItens);
+		statusServico.setEmptySelectionAllowed(false);
+		statusServico.setTextInputAllowed(false);
 		statusServico.setWidth("80%");
 
 		descricaoServico.setDescription("Descrição do serviço");
@@ -78,6 +107,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 		addComponent(nos);
 		addComponent(manutencao);
+		addComponent(contratada);
 		addComponent(tecnico);
 		addComponent(statusServico);
 		addComponent(descricaoServico);
@@ -95,6 +125,6 @@ public class TelaAvaliacao extends FormLayout implements View {
 	
 	@Override
     public void enter(ViewChangeEvent event) {
-        Notification.show("Bem-vindo, teste 1.");
+		//Notification.show("Bem-vindo, teste 1.");
 	}
 }

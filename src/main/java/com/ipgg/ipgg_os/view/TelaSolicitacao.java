@@ -8,23 +8,21 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaSolicitacao extends FormLayout implements View {
-	private static final long serialVersionUID = 4239276886146017740L;
 	protected static final String VIEW_NAME = "tela_solicitacao";
 
 	private TextField nos;
-	private ComboBox<String> solicitante;
+	private TextField solicitante;
 	private TextField gerencia;
 	private TextField diretoria;
 	private ComboBox<String> local;
 	private ComboBox<String> servico;
 	private ComboBox<String> tipoServico;
 	private TextField bemPatrimonial;
-	private NumberField nPatrimonio;
+	private TextField nPatrimonio;
 	private TextArea descricaoServico;
 	private ComboBox<String> grauNecessidade;
 	private ComboBox<String> rechamado;
@@ -34,7 +32,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 	public TelaSolicitacao() {
 		nos = new TextField("Nº O.S.");
-		solicitante = new ComboBox<>("Solicitante Autorizado");
+		solicitante = new TextField("Solicitante Autorizado");
 		gerencia = new TextField("Gerência");
 		diretoria = new TextField("Diretoria");
 		local = new ComboBox<>("Local");
@@ -52,7 +50,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 		HorizontalLayout footer = new HorizontalLayout();
 
-		nos.setEnabled(false);
+		nos.setReadOnly(false);
 		nos.setDescription("Nº da Ordem de Serviço");
 		nos.setWidth("80%");
 
@@ -69,41 +67,47 @@ public class TelaSolicitacao extends FormLayout implements View {
 		local.setWidth("80%");
 
 		servico.setDescription("Selecione o serviço desejado");
-		String servicoItens[] = { "Manutenção Corretiva", "Manutenção Preventiva", "Instalação", "Calibração" };
+		String servicoItens[] = {
+			"Manutenção Corretiva", "Manutenção Preventiva",
+			"Instalação", "Calibração"
+		};
 		servico.setEmptySelectionAllowed(false);
 		servico.setTextInputAllowed(false);
 		servico.setItems(servicoItens);
 		servico.setWidth("80%");
 
 		tipoServico.setDescription("Selecione o tipo de serviço");
-		String tipoServicoItens[] = { "Alvenaria", "Chaveiro", "Elétrica", "Hidráulica", "Marcenaria",
-				"Mobiliário/Equipamentos", "Pintura", "Serralheria", "Outros" };
+		String tipoServicoItens[] = {
+			"Alvenaria", "Chaveiro", "Elétrica",
+			"Hidráulica", "Marcenaria", "Mobiliário/Equipamentos",
+			"Pintura", "Serralheria", "Outros"
+		};
 		tipoServico.setEmptySelectionAllowed(false);
 		tipoServico.setTextInputAllowed(false);
 		tipoServico.setItems(tipoServicoItens);
 		tipoServico.setWidth("80%");
 		tipoServico.addSelectionListener((e) -> {
-			// Mobiliário/Equipamentos
-			if (tipoServico.getSelectedItem().equals(tipoServicoItens[5])) {
+			String item = tipoServico.getSelectedItem().get();
+			String equipamentoMobiliario = tipoServicoItens[5];
+			if (item.equals(equipamentoMobiliario)) {
 				bemPatrimonial.setEnabled(true);
 				nPatrimonio.setEnabled(true);
-				Notification.show("IF");
 			} else {
 				bemPatrimonial.setEnabled(false);
 				bemPatrimonial.setValue("");
 				nPatrimonio.setEnabled(false);
 				nPatrimonio.setValue("");
-				Notification.show("ELSE");
 			}
 		});
 
 		bemPatrimonial.setDescription("Bem patrimonial");
-		bemPatrimonial.setEnabled(false);
+		bemPatrimonial.setReadOnly(false);
 		bemPatrimonial.setWidth("80%");
 
 		nPatrimonio.setDescription("Número do patrimônio");
-		nPatrimonio.setEnabled(false);
 		nPatrimonio.setWidth("80%");
+		nPatrimonio.setReadOnly(false);
+		
 
 		descricaoServico.setDescription("Descrição do serviço");
 		descricaoServico.setWidth("80%");
@@ -124,18 +128,24 @@ public class TelaSolicitacao extends FormLayout implements View {
 		rechamado.setItems(rechamdoItens);
 		rechamado.setWidth("80%");
 		rechamado.addSelectionListener((e) -> {
-			// Sim
-			if (rechamado.getSelectedItem().equals(rechamdoItens[0])) {
-				osAnterior.setEnabled(true);
+			String item = rechamado.getSelectedItem().get();
+			String sim = rechamdoItens[0];
+			if (item.equals(sim)) {
+				osAnterior.setReadOnly(true);
 			} else {
-				osAnterior.setEnabled(false);
+				osAnterior.setReadOnly(false);
 				osAnterior.setValue("");
 			}
 		});
 
-		osAnterior.setEnabled(false);
 		osAnterior.setDescription("Número da O.S. anterior");
 		osAnterior.setWidth("80%");
+		osAnterior.setMaxValue(Long.MAX_VALUE);
+		osAnterior.setDecimalAllowed(false);
+		osAnterior.setGroupingUsed(false);
+		osAnterior.setNegativeAllowed(false);
+		osAnterior.setDecimalSeparatorAlwaysShown(false);
+		osAnterior.setReadOnly(false);
 
 		addComponent(nos);
 		addComponent(solicitante);
@@ -158,6 +168,6 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Notification.show("Bem-vindo, teste 3.");
+		//Notification.show("Bem-vindo, teste 3.");
 	}
 }
