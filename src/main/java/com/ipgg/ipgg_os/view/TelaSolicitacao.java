@@ -146,6 +146,9 @@ public class TelaSolicitacao extends FormLayout implements View {
 		osAnterior.setNegativeAllowed(false);
 		osAnterior.setDecimalSeparatorAlwaysShown(false);
 		osAnterior.setReadOnly(false);
+		
+		confirmar.setDescription("Confirmar dados");
+		cancelar.setDescription("Cancelar O.S.");
 
 		addComponent(nos);
 		addComponent(solicitante);

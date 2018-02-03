@@ -2,13 +2,11 @@ package com.ipgg.ipgg_os.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
@@ -17,7 +15,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 	private TextField nos;
 	private ComboBox<String> manutencao;
-	private TextField contratada;
+	private TextField empresa;
 	private ComboBox<String> tecnico;
 	private ComboBox<String> statusServico;
 	private TextArea descricaoServico;
@@ -32,7 +30,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 	public TelaAvaliacao() {
 		nos = new TextField("Nº O. S.");
 		manutencao = new ComboBox<>("Manutenção");
-		contratada = new TextField("Contratada");
+		empresa = new TextField("Empresa");
 		tecnico = new ComboBox<String>("Técnico");
 		statusServico = new ComboBox<String>("Status Serviço");
 		descricaoServico = new TextArea("Descrição");
@@ -46,7 +44,6 @@ public class TelaAvaliacao extends FormLayout implements View {
 		finalizar = new Button("Finalizar");
 
 		HorizontalLayout footer = new HorizontalLayout();
-		HorizontalLayout finalizarFooter = new HorizontalLayout();
 
 		nos.setEnabled(false);
 		nos.setDescription("Número da Ordem de serviço");
@@ -54,28 +51,48 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 		manutencao.setDescription("Manutenção");
 		String manutencaoItens[] = {
-			"Interna", "Externa", "Contrata"
+			"Interna", "Externa", "Contratada"
 		};
 		manutencao.setItems(manutencaoItens);
 		manutencao.setEmptySelectionAllowed(false);
 		manutencao.setTextInputAllowed(false);
 		manutencao.addSelectionListener((e) -> {
 			String item = manutencao.getSelectedItem().get();
+			String opcInterna = manutencaoItens[0];
+			String opcExterna = manutencaoItens[1];
 			String opcContratada = manutencaoItens[2];
-			if (item.equals(opcContratada)) {
-				contratada.setReadOnly(false);
-			} else {
-				contratada.setReadOnly(true);
-				contratada.setValue("");
+			if (item.equals(opcInterna)) {
+				tecnico.setItems("Técnicos internos");
+				tecnico.setEmptySelectionAllowed(false);
+				tecnico.setReadOnly(false);
+				empresa.setValue("");
+				empresa.setReadOnly(true);
+			} else if (item.equals(opcExterna)) {
+				tecnico.setEmptySelectionAllowed(true);
+				tecnico.setValue("");
+				tecnico.setItems("");
+				tecnico.setReadOnly(true);
+				empresa.setValue("");
+				empresa.setReadOnly(false);
+			} else if (item.equals(opcContratada)) {
+				tecnico.setEmptySelectionAllowed(true);
+				tecnico.setValue("");
+				tecnico.setItems("");
+				tecnico.setReadOnly(true);
+				empresa.setValue("");
+				empresa.setReadOnly(false);
 			}
 		});
 		manutencao.setWidth("80%");
 		
-		contratada.setDescription("Empresa contratada");
-		contratada.setReadOnly(true);
-		contratada.setWidth("80%");
+		empresa.setDescription("Nome da empresa");
+		empresa.setReadOnly(true);
+		empresa.setWidth("80%");
 
 		tecnico.setDescription("Técnico responsável");
+		tecnico.setReadOnly(true);
+		tecnico.setEmptySelectionAllowed(false);
+		tecnico.setTextInputAllowed(false);
 		tecnico.setWidth("80%");
 
 		statusServico.setDescription("Status do serviço");
@@ -92,22 +109,31 @@ public class TelaAvaliacao extends FormLayout implements View {
 		descricaoServico.setWidth("80%");
 
 		tipoDefeito.setDescription("Tipo de defeito identificado");
+		String tipoDefeitoItens[] = {
+			"Erro de operação", "Abuso na utilização",
+			"Falha no componente", "Outro"
+		};
+		tipoDefeito.setItems(tipoDefeitoItens);
+		tipoDefeito.setEmptySelectionAllowed(false);
+		tipoDefeito.setTextInputAllowed(false);
 		tipoDefeito.setWidth("80%");
 
 		descricaoDefeito.setDescription("Descrição do defeito");
 		descricaoDefeito.setWidth("80%");
 
-		recebimentoServico.setDescription("Recebimento do serviço");
+		recebimentoServico.setDescription("Recebimento do status do serviço");
 		recebimentoServico.setWidth("80%");
 
 		data.setDescription("Data");
-		data.setWidth("20%");
+		data.setWidth("30%");
 
-		finalizar.setDescription("Finalizar Avaliação");
+		confirmar.setDescription("Confirmar dados");
+		cancelar.setDescription("Cancelar alterações realizadas");
+		finalizar.setDescription("Finalizar Ordem de Serviço");
 
 		addComponent(nos);
 		addComponent(manutencao);
-		addComponent(contratada);
+		addComponent(empresa);
 		addComponent(tecnico);
 		addComponent(statusServico);
 		addComponent(descricaoServico);
@@ -118,11 +144,10 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 		footer.addComponent(confirmar);
 		footer.addComponent(cancelar);
-		finalizarFooter.addComponent(finalizar);
+		footer.addComponent(finalizar);
 		addComponent(footer);
-		addComponent(finalizarFooter);
 	}
-	
+
 	@Override
     public void enter(ViewChangeEvent event) {
 		//Notification.show("Bem-vindo, teste 1.");
