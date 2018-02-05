@@ -1,5 +1,7 @@
 package com.ipgg.ipgg_os.view;
 
+import java.util.Locale;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -28,6 +30,7 @@ public class MainWindow extends UI {
     	MainView mainView = new MainView(this);
     	getPage().setTitle("IPPG OS");
     	setContent(mainView);
+    	UI.getCurrent().setLocale(new Locale("pt-BR"));
     	setSizeFull();
     }
 

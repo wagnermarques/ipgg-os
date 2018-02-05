@@ -50,7 +50,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 		HorizontalLayout footer = new HorizontalLayout();
 
-		nos.setReadOnly(false);
+		nos.setReadOnly(true);
 		nos.setDescription("Nº da Ordem de Serviço");
 		nos.setWidth("80%");
 

@@ -15,11 +15,17 @@ public class MainView extends VerticalLayout implements View {
 		avaliacao = new Button("Avaliação");
 		solicitacao = new Button("Solicitação");
 		feedback = new Button("Feedback");
+		
+		avaliacao.setWidth("30%");
+		avaliacao.setHeight("60%");
+		solicitacao.setWidth("30%");
+		solicitacao.setHeight("60%");
+		feedback.setWidth("30%");
+		feedback.setHeight("60%");
 
 		TelaSolicitacao telaSolicitacao = new TelaSolicitacao();
 		TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
 		TelaFeedBack telaFeedBack = new TelaFeedBack();
-
 		
 		navigator = new Navigator(mainWindow, mainWindow);
 		navigator.addView("", this);

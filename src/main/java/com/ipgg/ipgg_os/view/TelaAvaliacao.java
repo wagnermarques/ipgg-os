@@ -11,6 +11,8 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaAvaliacao extends FormLayout implements View {
+	private static final long serialVersionUID = 1L;
+
 	protected static final String VIEW_NAME = "tela_avaliacao";
 
 	private TextField nos;
@@ -45,7 +47,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 
 		HorizontalLayout footer = new HorizontalLayout();
 
-		nos.setEnabled(false);
+		nos.setReadOnly(true);
 		nos.setDescription("Número da Ordem de serviço");
 		nos.setWidth("80%");
 
@@ -146,6 +148,7 @@ public class TelaAvaliacao extends FormLayout implements View {
 		footer.addComponent(cancelar);
 		footer.addComponent(finalizar);
 		addComponent(footer);
+		
 	}
 
 	@Override

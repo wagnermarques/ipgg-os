@@ -11,7 +11,9 @@ public class AvaliacaoOS {
 	@Id
 	private Long id;
 
+	private String nos;
 	private String manutencao;
+	private String empresa;
 	private String tecnico;
 	private String statusServico;
 	private String descricaoServico;
@@ -27,6 +29,14 @@ public class AvaliacaoOS {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getNos() {
+		return nos;
+	}
+
+	public void setNos(String nos) {
+		this.nos = nos;
+	}
 
 	public String getManutencao() {
 		return manutencao;
@@ -34,6 +44,14 @@ public class AvaliacaoOS {
 
 	public void setManutencao(String manutencao) {
 		this.manutencao = manutencao;
+	}
+	
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 	public String getTecnico() {
