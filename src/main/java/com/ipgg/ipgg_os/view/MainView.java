@@ -2,7 +2,9 @@ package com.ipgg.ipgg_os.view;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 public class MainView extends VerticalLayout implements View {
@@ -16,26 +18,33 @@ public class MainView extends VerticalLayout implements View {
 		solicitacao = new Button("Solicitação");
 		feedback = new Button("Feedback");
 		
-		avaliacao.setWidth("30%");
-		avaliacao.setHeight("60%");
-		solicitacao.setWidth("30%");
-		solicitacao.setHeight("60%");
-		feedback.setWidth("30%");
-		feedback.setHeight("60%");
+		HorizontalLayout body = new HorizontalLayout();
+		
+		avaliacao.setWidth("80%");
+		avaliacao.setHeight("200px");
+		solicitacao.setWidth("80%");
+		solicitacao.setHeight("200px");
+		feedback.setWidth("80%");
+		feedback.setHeight("200px");
 
 		TelaSolicitacao telaSolicitacao = new TelaSolicitacao();
 		TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
 		TelaFeedBack telaFeedBack = new TelaFeedBack();
-		
+
 		navigator = new Navigator(mainWindow, mainWindow);
 		navigator.addView("", this);
 		navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
 		navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
 		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
 
-		addComponent(avaliacao);
-		addComponent(solicitacao);
-		addComponent(feedback);
+		body.addComponent(avaliacao);
+		body.setComponentAlignment(avaliacao, Alignment.MIDDLE_CENTER);
+		body.addComponent(solicitacao);
+		body.setComponentAlignment(solicitacao, Alignment.MIDDLE_CENTER);
+		body.addComponent(feedback);
+		body.setComponentAlignment(feedback, Alignment.MIDDLE_CENTER);
+		body.setWidth("100%");
+		addComponent(body);
 
 		avaliacao.addClickListener((e) -> navigator.navigateTo(TelaAvaliacao.VIEW_NAME));
 

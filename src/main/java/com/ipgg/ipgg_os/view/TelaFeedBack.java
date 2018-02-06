@@ -2,6 +2,7 @@ package com.ipgg.ipgg_os.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -73,6 +74,6 @@ public class TelaFeedBack extends FormLayout implements View {
 	
 	@Override
     public void enter(ViewChangeEvent event) {
-        Notification.show("Bem-vindo, teste 2.");
+        //Notification.show("Bem-vindo, teste 2.");
 	}
 }
