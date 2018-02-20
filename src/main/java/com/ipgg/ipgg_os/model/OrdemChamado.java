@@ -20,9 +20,10 @@ public class OrdemChamado {
 	private String grauNecessidade;
 	private Boolean rechamado;
 	private Long osAnterior;
+	private String status;
 	
-	public OrdemChamado() {
-		
+	public OrdemChamado(String solicitante) {
+		this.solicitante = solicitante;
 	}
 
 	public Long getNos() {
@@ -126,5 +127,13 @@ public class OrdemChamado {
 
 	public void setOsAnterior(Long osAnterior) {
 		this.osAnterior = osAnterior;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status= status;
 	}
 }
