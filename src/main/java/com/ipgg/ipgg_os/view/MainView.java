@@ -8,9 +8,9 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 public class MainView extends VerticalLayout implements View {
-	private Navigator navigator;
+	public static Navigator navigator;
 
-	public MainView(MainWindow mainWindow) {
+	public MainView(Main mainWindow) {
 		HorizontalLayout body = new HorizontalLayout();
 
 		TelaSolicitacao telaSolicitacao = new TelaSolicitacao();

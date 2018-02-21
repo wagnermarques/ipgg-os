@@ -9,7 +9,9 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.UI;
@@ -23,8 +25,10 @@ import com.vaadin.ui.VerticalLayout;
  * através do controle de ordem de serviço.
  */
 @Theme("meutema")
-public class MainWindow extends UI {
+public class Main extends UI {
 
+	public static String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath(); 
+	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
     	MainView mainView = new MainView(this);
@@ -34,8 +38,17 @@ public class MainWindow extends UI {
     	setSizeFull();
     }
 
+	public static void setValueInHttpSession(String attrName, Object value) {
+		VaadinSession.getCurrent().setAttribute(attrName, value);
+	}
+
+	public static Object getValueFromHttpSession(String attrName) {
+		return VaadinSession.getCurrent().getAttribute(attrName);
+	}
+
+    
     @WebServlet(urlPatterns = "/*", name = "MainWindowServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MainWindow.class, productionMode = false)
+    @VaadinServletConfiguration(ui = Main.class, productionMode = false)
     public static class MainWindowServlet extends VaadinServlet {
     }
 }
