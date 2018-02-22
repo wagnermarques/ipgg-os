@@ -10,6 +10,7 @@ public class Pessoa {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+
 	private String nome;
 	private String rg;
 	private String cpf;
@@ -57,7 +58,5 @@ public class Pessoa {
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
 	}
-
-	
 	
 }

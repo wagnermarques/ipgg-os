@@ -1,6 +1,6 @@
 package com.ipgg.ipgg_os.view.vaadin.framework;
 
-import com.ipgg.ipgg_os.view.Main;
+import com.ipgg.ipgg_os.view.vaadin.Main;
 import com.vaadin.server.ServiceException;
 import com.vaadin.server.SessionInitEvent;
 import com.vaadin.server.SessionInitListener;

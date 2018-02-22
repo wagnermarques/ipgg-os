@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os.view;
+package com.ipgg.ipgg_os.view.vaadin;
 
 import org.vaadin.ui.NumberField;
 

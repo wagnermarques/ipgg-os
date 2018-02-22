@@ -7,9 +7,9 @@ import javax.persistence.Id;
 public class SistemaUsuarioRole {
 
 	@Id
-	String roleName;
+	private String roleName;
 
-	public SistemaUsuarioRole(String role) {
+	public SistemaUsuarioRole(String roleName) {
 		this.roleName = roleName;
 	}
 

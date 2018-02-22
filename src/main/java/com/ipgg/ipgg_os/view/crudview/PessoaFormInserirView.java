@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 import com.ipgg.ipgg_os.model.common.Pessoa;
 import com.ipgg.ipgg_os.persistence.HibernateUtil;
-import com.ipgg.ipgg_os.view.Main;
+import com.ipgg.ipgg_os.view.vaadin.Main;
 import com.vaadin.data.Binder;
 import com.vaadin.data.ValidationException;
 import com.vaadin.icons.VaadinIcons;

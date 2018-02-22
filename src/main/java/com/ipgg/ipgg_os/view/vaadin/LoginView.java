@@ -7,9 +7,6 @@ import org.jboss.logging.Logger;
 
 import com.ipgg.ipgg_os.model.sistema.SistemaUsuario;
 import com.ipgg.ipgg_os.service.security.LoginService;
-import com.ipgg.ipgg_os.view.Main;
-import com.ipgg.ipgg_os.view.MainView;
-import com.ipgg.ipgg_os.view.TelaListaOS;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;

@@ -1,11 +1,10 @@
-package com.ipgg.ipgg_os.view;
+package com.ipgg.ipgg_os.view.vaadin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.ipgg.ipgg_os.model.OrdemChamado;
-
+import com.ipgg.ipgg_os.model.common.OrdemChamado;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;

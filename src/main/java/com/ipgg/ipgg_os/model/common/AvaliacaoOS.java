@@ -1,4 +1,4 @@
-package com.ipgg.ipgg_os.model;
+package com.ipgg.ipgg_os.model.common;
 
 import java.util.Date;
 
@@ -109,5 +109,4 @@ public class AvaliacaoOS {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
 }

@@ -1,6 +1,7 @@
-package com.ipgg.ipgg_os.model;
+package com.ipgg.ipgg_os.model.common;
 
 public class FeedbackOS {
+
 	private String nos;
 	private String gerencia;
 	private String diretoria;

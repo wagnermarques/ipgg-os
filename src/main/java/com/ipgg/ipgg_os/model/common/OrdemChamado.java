@@ -1,10 +1,11 @@
-package com.ipgg.ipgg_os.model;
+package com.ipgg.ipgg_os.model.common;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class OrdemChamado {
+
 	@Id
 	private Long nos;
 
@@ -15,7 +16,7 @@ public class OrdemChamado {
 	private String servico;
 	private String tipoServico;
 	private String bemPatrimonial;
-	private Long nPatrimonio;
+	private String nPatrimonio;
 	private String descricaoServico;
 	private String grauNecessidade;
 	private Boolean rechamado;
@@ -90,11 +91,11 @@ public class OrdemChamado {
 		this.bemPatrimonial = bemPatrimonial;
 	}
 
-	public Long getnPatrimonio() {
+	public String getnPatrimonio() {
 		return nPatrimonio;
 	}
 
-	public void setnPatrimonio(Long nPatrimonio) {
+	public void setnPatrimonio(String nPatrimonio) {
 		this.nPatrimonio = nPatrimonio;
 	}
 
