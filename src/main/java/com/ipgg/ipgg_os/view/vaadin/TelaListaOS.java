@@ -1,3 +1,4 @@
+
 package com.ipgg.ipgg_os.view.vaadin;
 
 import java.util.ArrayList;
@@ -5,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.ipgg.ipgg_os.model.common.OrdemChamado;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
@@ -32,6 +34,8 @@ public class TelaListaOS extends VerticalLayout implements View {
 		Button visualizarOS = new Button("ICONE VISUALIZAR");
 		Button avaliarOS = new Button("ICONE AVALIAR");
 		Button feedbackOS = new Button("ICONE FEEDBACK");
+		
+		criarOS.addListener((e) -> MainView.navigator.navigateTo(TelaSolicitacao.VIEW_NAME));
 		
 		tabela.setCaption("Ordem de Chamado");
 		tabela.setWidth("80%");

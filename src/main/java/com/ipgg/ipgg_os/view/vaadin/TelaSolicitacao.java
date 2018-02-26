@@ -2,6 +2,7 @@ package com.ipgg.ipgg_os.view.vaadin;
 
 import org.vaadin.ui.NumberField;
 
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -47,7 +48,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 		confirmar = new Button("Confirmar");
 		cancelar = new Button("Cancelar");
-
+		
 		HorizontalLayout footer = new HorizontalLayout();
 
 		nos.setReadOnly(true);
@@ -107,7 +108,6 @@ public class TelaSolicitacao extends FormLayout implements View {
 		nPatrimonio.setDescription("Número do patrimônio");
 		nPatrimonio.setWidth("80%");
 		nPatrimonio.setReadOnly(false);
-		
 
 		descricaoServico.setDescription("Descrição do serviço");
 		descricaoServico.setWidth("80%");
@@ -149,6 +149,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		
 		confirmar.setDescription("Confirmar dados");
 		cancelar.setDescription("Cancelar O.S.");
+		cancelar.addListener((e) -> MainView.navigator.navigateTo(TelaListaOS.VIEW_NAME));
 
 		addComponent(nos);
 		addComponent(solicitante);

@@ -15,5 +15,6 @@ public class CountView extends Panel implements View {
   }
 
   public void enter(ViewChangeEvent event) {
+
   }
 }
