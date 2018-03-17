@@ -1,9 +1,18 @@
 package com.ipgg.ipgg_os.view.vaadin;
 
+import java.util.ArrayList;
+
+import org.hibernate.Session;
 import org.vaadin.ui.NumberField;
 
-import com.vaadin.navigator.Navigator;
+import com.ipgg.ipgg_os.model.common.OrdemServico;
+import com.ipgg.ipgg_os.persistence.GenericHibernateDAOImp;
+import com.ipgg.ipgg_os.persistence.HibernateUtil;
+import com.ipgg.ipgg_os.persistence.IGenericDAO;
+import com.vaadin.data.Binder;
+import com.vaadin.data.ValidationException;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewBeforeLeaveEvent;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -26,34 +35,95 @@ public class TelaSolicitacao extends FormLayout implements View {
 	private TextField nPatrimonio;
 	private TextArea descricaoServico;
 	private ComboBox<String> grauNecessidade;
-	private ComboBox<String> rechamado;
+	private ComboBox<Boolean> rechamado;
 	private NumberField osAnterior;
+	private OrdemServico ordemServico;
+	private IGenericDAO<OrdemServico, Long> pDao;
 	private Button confirmar;
 	private Button cancelar;
 
-	public TelaSolicitacao() {
-		nos = new TextField("Nº O.S.");
-		solicitante = new TextField("Solicitante Autorizado");
-		gerencia = new TextField("Gerência");
-		diretoria = new TextField("Diretoria");
-		local = new ComboBox<>("Local");
-		servico = new ComboBox<>("Serviço Solicitado");
-		tipoServico = new ComboBox<>("Tipo de Serviço");
-		bemPatrimonial = new TextField("Bem Patrimonial");
-		nPatrimonio = new NumberField("Nº de Patrimônio");
-		descricaoServico = new TextArea("Descrição do Serviço a ser realizado");
-		grauNecessidade = new ComboBox<>("Grau de necessidade");
-		rechamado = new ComboBox<>("Rechamado");
-		osAnterior = new NumberField("O.S. anterior");
+	Binder<OrdemServico> binder = new Binder<OrdemServico>(OrdemServico.class);
 
-		confirmar = new Button("Confirmar");
-		cancelar = new Button("Cancelar");
+	private GenericHibernateDAOImp dao;
 		
-		HorizontalLayout footer = new HorizontalLayout();
-
+	public TelaSolicitacao() {		
+		
+		this.ordemServico = new OrdemServico();	
+		this.binder.setBean(ordemServico);	
+	
+		nos = new NumberField("Nº O.S.");
+		nos.setEnabled(false);
 		nos.setReadOnly(true);
 		nos.setDescription("Nº da Ordem de Serviço");
 		nos.setWidth("80%");
+		//binder.forField(nos).bind("nos");
+		
+		solicitante = new TextField("Solicitante Autorizado");
+		binder.forField(solicitante).bind("solicitante");
+		
+		gerencia = new TextField("Gerência");
+		binder.forField(gerencia).bind("gerencia");
+		
+		diretoria = new TextField("Diretoria");
+		binder.forField(diretoria).bind("diretoria");
+		
+		local = new ComboBox<>("Local");
+		binder.forField(local).bind("local");
+		
+		servico = new ComboBox<>("Serviço Solicitado");
+		binder.forField(servico).bind("servico");
+		
+		tipoServico = new ComboBox<>("Tipo de Serviço");
+		binder.forField(tipoServico).bind("tipoServico");
+		
+		bemPatrimonial = new TextField("Bem Patrimonial");
+		binder.forField(bemPatrimonial).bind("bemPatrimonial");
+		bemPatrimonial.setDescription("Bem patrimonial");
+		bemPatrimonial.setReadOnly(false);
+		bemPatrimonial.setWidth("80%");
+		
+		nPatrimonio = new TextField("Nº de Patrimônio");
+		binder.forField(nPatrimonio).bind("nPatrimonio");
+		
+		descricaoServico = new TextArea("Descrição do Serviço a ser realizado");
+		binder.forField(descricaoServico).bind("descricaoServico");
+		
+		grauNecessidade = new ComboBox<>("Grau de necessidade");
+		binder.forField(grauNecessidade).bind("grauNecessidade");
+		
+		rechamado = new ComboBox<Boolean>("Rechamado");
+		binder.forField(rechamado).bind("rechamado");
+		rechamado.setDescription("Rechamado");
+		String rechamdoItens[] = { "Sim", "Não" };
+		//rechamado.setSelectedItem(rechamdoItens[1]);
+		rechamado.setEmptySelectionAllowed(false);
+		rechamado.setTextInputAllowed(false);
+		//rechamado.setItems(rechamdoItens);
+		rechamado.setWidth("80%");
+		rechamado.addSelectionListener((e) -> {
+			//String itemSelectec = rechamado.getSelectedItem().get();
+			System.out.println("rechamado.getSelectedItem().get();");
+			System.out.println(rechamado.getSelectedItem().get());
+			String sim = rechamdoItens[0];
+			//if (itemSelectec.equals(sim)) {
+				//osAnterior.setReadOnly(true);
+				//osAnterior.setVa
+			//} else {
+			//	osAnterior.setReadOnly(false);
+			//	osAnterior.setValue(false);
+			//}
+		});
+
+		
+		osAnterior = new NumberField("O.S. anterior");
+		//binder.forField(osAnterior).bind("osAnterior");
+		
+		
+		confirmar = new Button("Confirmar");		
+		cancelar = new Button("Cancelar");		
+		
+		HorizontalLayout footer = new HorizontalLayout();
+
 
 		solicitante.setDescription("Solicitante autorizado");
 		solicitante.setWidth("80%");
@@ -101,9 +171,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 			}
 		});
 
-		bemPatrimonial.setDescription("Bem patrimonial");
-		bemPatrimonial.setReadOnly(false);
-		bemPatrimonial.setWidth("80%");
+	
 
 		nPatrimonio.setDescription("Número do patrimônio");
 		nPatrimonio.setWidth("80%");
@@ -120,24 +188,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		grauNecessidade.setItems(grauNecessidadeItens);
 		grauNecessidade.setWidth("80%");
 
-		rechamado.setDescription("Rechamado");
-		String rechamdoItens[] = { "Sim", "Não" };
-		rechamado.setSelectedItem(rechamdoItens[1]);
-		rechamado.setEmptySelectionAllowed(false);
-		rechamado.setTextInputAllowed(false);
-		rechamado.setItems(rechamdoItens);
-		rechamado.setWidth("80%");
-		rechamado.addSelectionListener((e) -> {
-			String item = rechamado.getSelectedItem().get();
-			String sim = rechamdoItens[0];
-			if (item.equals(sim)) {
-				osAnterior.setReadOnly(true);
-			} else {
-				osAnterior.setReadOnly(false);
-				osAnterior.setValue("");
-			}
-		});
-
+		
 		osAnterior.setDescription("Número da O.S. anterior");
 		osAnterior.setWidth("80%");
 		osAnterior.setMaxValue(Long.MAX_VALUE);
@@ -148,8 +199,33 @@ public class TelaSolicitacao extends FormLayout implements View {
 		osAnterior.setReadOnly(false);
 		
 		confirmar.setDescription("Confirmar dados");
+		confirmar.addClickListener((e)->{
+			
+			try {
+				this.binder.writeBean(this.ordemServico);
+				System.out.println("this.ordemServico.getNos() ->" + this.ordemServico.getNos());
+				System.out.println("this.ordemServico.getSolicitante() ->" + this.ordemServico.getSolicitante());
+				System.out.println("this.ordemServico.getGerencia()-> "+this.ordemServico.getGerencia());
+				System.out.println("this.ordemServico.getDiretoria() ->" +this.ordemServico.getDiretoria());
+				System.out.println("this.ordemServico.getTipoServico() ->" +this.ordemServico.getTipoServico());
+				System.out.println("this.ordemServico.getBemPatrimonial() ->" +this.ordemServico.getBemPatrimonial());
+				System.out.println("this.ordemServico.getnPatrimonio() ->" +this.ordemServico.getnPatrimonio());
+				System.out.println("this.ordemServico.getDescricaoServico() ->" +this.ordemServico.getDescricaoServico());
+				System.out.println("this.ordemServico.getGrauNecessidade() ->" +this.ordemServico.getGrauNecessidade());
+				System.out.println("this.ordemServico.getRechamado() ->" +this.ordemServico.getRechamado());
+				System.out.println("this.ordemServico.getOsAnterior() ->" +this.ordemServico.getOsAnterior());
+				System.out.println("this.ordemServico.getStatus() ->" +this.ordemServico.getStatus());
+			} catch (ValidationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	
+			this.dao.beginTransaction();
+			this.dao.inserir(this.ordemServico);
+			this.dao.commit();			
+		});
 		cancelar.setDescription("Cancelar O.S.");
-		cancelar.addListener((e) -> MainView.navigator.navigateTo(TelaListaOS.VIEW_NAME));
+		cancelar.addListener((e) -> Main.navigator.navigateTo(TelaListaOS.VIEW_NAME));
 
 		addComponent(nos);
 		addComponent(solicitante);
@@ -172,6 +248,17 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		//Notification.show("Bem-vindo, teste 3.");
+		Session session = HibernateUtil.getSessionFactory().openSession();	
+		this.dao = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);		
 	}
+	
+	@Override
+	public void beforeLeave(ViewBeforeLeaveEvent event) {
+		System.out.println("TelaSolicitacao -> public void beforeLeave(ViewBeforeLeaveEvent event) {...");
+		
+		this.dao.clearSession();
+		this.dao.closeSession();
+		View.super.beforeLeave(event);
+	}
+
 }

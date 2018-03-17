@@ -1,12 +1,15 @@
 package com.ipgg.ipgg_os.model.common;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class OrdemChamado {
+public class OrdemServico {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long nos;
 
 	private String solicitante;
@@ -23,9 +26,6 @@ public class OrdemChamado {
 	private Long osAnterior;
 	private String status;
 	
-	public OrdemChamado(String solicitante) {
-		this.solicitante = solicitante;
-	}
 
 	public Long getNos() {
 		return nos;
@@ -137,4 +137,11 @@ public class OrdemChamado {
 	public void setStatus(String status) {
 		this.status= status;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNos()+":"+this.descricaoServico;
+	}
+	
+	
 }

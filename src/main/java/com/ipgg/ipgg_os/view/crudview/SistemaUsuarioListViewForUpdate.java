@@ -1,8 +1,6 @@
 package com.ipgg.ipgg_os.view.crudview;
 
 import java.util.List;
-
-
 import java.util.logging.Logger;
 
 import org.hibernate.Session;
@@ -12,7 +10,6 @@ import com.ipgg.ipgg_os.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipgg_os.persistence.HibernateUtil;
 import com.ipgg.ipgg_os.persistence.IGenericDAO;
 import com.ipgg.ipgg_os.view.vaadin.Main;
-import com.ipgg.ipgg_os.view.vaadin.MainView;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewBeforeLeaveEvent;
@@ -69,7 +66,7 @@ public class SistemaUsuarioListViewForUpdate extends VerticalLayout implements V
 	private Button buildUpdateButton(SistemaUsuario su) {
 		Button button = new Button(VaadinIcons.EDIT);
 		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		button.addClickListener(e -> MainView.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME+"/"+su.getId()));
+		button.addClickListener(e -> Main.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME+"/"+su.getId()));
 		return button;
 	}
 

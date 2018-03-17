@@ -25,24 +25,25 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
 
 
-public class SistemaUsuarioFormViewFoInsertion extends FormLayout implements View {
+public class SistemaUsuarioFormViewForInsertion extends FormLayout implements View {
 
 		public final static String VIEW_NAME = "sistema_usuario_form_insertion";
 		public final static String FORM_CAPTION = "Formulario: Inserir Usuario do Sistema";
 		private SistemaUsuario sistUsuario;
 		private IGenericDAO<SistemaUsuario,Long> pDAO;
 		
-		public SistemaUsuarioFormViewFoInsertion() {
+		public SistemaUsuarioFormViewForInsertion() {
 			
 			this.sistUsuario = new SistemaUsuario();
 			Binder<SistemaUsuario> pessBinder = new Binder<>(SistemaUsuario.class);
 			pessBinder.setBean(this.sistUsuario);
 			
-			this.setCaption(SistemaUsuarioFormViewFoInsertion.FORM_CAPTION);		
+			this.setCaption(SistemaUsuarioFormViewForInsertion.FORM_CAPTION);		
 			
 			
 			GridLayout gridLayout = new GridLayout(2,3);//2 colunas e 3 linhas
@@ -74,11 +75,12 @@ public class SistemaUsuarioFormViewFoInsertion extends FormLayout implements Vie
 
 			
 			//TextField para Senha
-			TextField txtSenha = new TextField("Senha");
+			PasswordField txtSenha = new PasswordField("Senha");
 			txtSenha.setWidth("80%");
 			txtSenha.setIcon(VaadinIcons.CODE);
 			
 			txtLogin.setRequiredIndicatorVisible(true);
+			pessBinder.forField(txtSenha).bind("senha");
 			
 			gridLayout.addComponent(txtSenha, 1, 1, 1, 1);
 

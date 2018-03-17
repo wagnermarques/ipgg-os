@@ -1,5 +1,6 @@
 package com.ipgg.ipgg_os.view.vaadin.framework;
 
+import com.ipgg.ipgg_os.persistence.HibernateUtil;
 import com.ipgg.ipgg_os.view.vaadin.Main;
 import com.vaadin.server.ServiceException;
 import com.vaadin.server.SessionInitEvent;

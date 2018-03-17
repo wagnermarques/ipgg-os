@@ -11,6 +11,7 @@ public class HibernateUtil {
 
    private static SessionFactory sessionFactory;
 
+   
    // Hibernate 5:
    private static SessionFactory buildSessionFactory() {
        try {
@@ -22,8 +23,7 @@ public class HibernateUtil {
                Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
            
            return metadata.getSessionFactoryBuilder().build();
-       } catch (Throwable ex) {
-        
+       } catch (Throwable ex) {        
            System.err.println("Initial SessionFactory creation failed." + ex);
            throw new ExceptionInInitializerError(ex);
        }
@@ -31,8 +31,9 @@ public class HibernateUtil {
 
    public static SessionFactory getSessionFactory() {
        if(HibernateUtil.sessionFactory == null){
-           HibernateUtil.buildSessionFactory();
+    	   HibernateUtil.sessionFactory = HibernateUtil.buildSessionFactory();
        }
+       System.out.println("HibernateUtil.sessionFactory = "+HibernateUtil.sessionFactory );
        return sessionFactory;
    }
 

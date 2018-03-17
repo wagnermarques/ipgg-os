@@ -6,10 +6,10 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
  
   <session-factory>
       <!-- Database connection settings -->
-      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">**URL**</property>
-      <property name="connection.username">**USER**</property>
-      <property name="connection.password">**PASSWORD**</property>
+      <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <property name="connection.url">jdbc:mysql://192.168.33.151:3306/ipggos</property>
+      <property name="connection.username">root</property>
+      <property name="connection.password">admin123</property>
  
       <!--
           JDBC connection pool (use the built-in)
@@ -45,7 +45,14 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
        <!-- 
       <property name="hibernate.hbm2ddl.auto">create-drop</property>
       -->
-      <!--<mapping class="com.ipgg.ipgg_os.<<model>>" />-->
+      <mapping class="com.ipgg.ipgg_os.model.sistema.SistemaUsuario" />
+      <mapping class="com.ipgg.ipgg_os.model.sistema.SistemaUsuarioRole" />
+      <mapping class="com.ipgg.ipgg_os.model.common.AvaliacaoOS" />      
+      <mapping class="com.ipgg.ipgg_os.model.common.FeedbackOS" />      
+      <mapping class="com.ipgg.ipgg_os.model.common.OrdemServico" />                      
+      <mapping class="com.ipgg.ipgg_os.model.common.Pessoa" />
+      
+      
   </session-factory>
  
 </hibernate-configuration>

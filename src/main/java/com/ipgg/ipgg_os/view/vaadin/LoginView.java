@@ -58,7 +58,7 @@ public class LoginView extends VerticalLayout implements View {
 						new Notification("Falha no login!!!");
 					}else {
 						Main.setValueInHttpSession("userLoggedIn", authenticatedUser);
-						MainView.navigator.navigateTo(TelaListaOS.VIEW_NAME);
+						Main.navigator.navigateTo(TelaListaOS.VIEW_NAME);
 					}					
 				} catch (Exception e) {
 					e.printStackTrace();
