@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 
 import com.ipgg.ipggos.model.OrdemServico;
+import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
+import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -37,8 +39,19 @@ public class OrdemDeServicoListView extends VerticalLayout implements View {
 		logger.info(" ### public OrdemDeServicoListView() {... ");
 		this.grid = new Grid<>();
 		this.grid.addColumn(OrdemServico::getId).setCaption("id");
-		this.grid.addColumn(OrdemServico::getLogin).setCaption("Login");
-		this.grid.addColumn(OrdemServico::getSenha).setCaption("senha");		
+		this.grid.addColumn(OrdemServico::getSolicitante).setCaption("Solicitante");
+		this.grid.addColumn(OrdemServico::getGerencia).setCaption("Gerencia");
+		this.grid.addColumn(OrdemServico::getDiretoria).setCaption("Diretoria");
+		this.grid.addColumn(OrdemServico::getLocal).setCaption("Local");
+		this.grid.addColumn(OrdemServico::getServico).setCaption("Servico");
+		this.grid.addColumn(OrdemServico::getTipoServico).setCaption("TipoServico");
+		this.grid.addColumn(OrdemServico::getBemPatrimonial).setCaption("BemPatrimonial");
+		this.grid.addColumn(OrdemServico::getNumPatrimonio).setCaption("NumPatrimonio");
+		this.grid.addColumn(OrdemServico::getDescricaoServico).setCaption("DescricaoServico");
+		this.grid.addColumn(OrdemServico::getGrauNecessidade).setCaption("GrauNecessidade");
+		this.grid.addColumn(OrdemServico::getRechamado).setCaption("Rechamado");
+		this.grid.addColumn(OrdemServico::getOsAnterior).setCaption("OsAnterior");
+		this.grid.addColumn(OrdemServico::getStatus).setCaption("Status");
 		this.grid.setFrozenColumnCount(2);                
 		this.addComponent(this.grid);
 	}

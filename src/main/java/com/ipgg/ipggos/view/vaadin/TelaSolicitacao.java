@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.vaadin.ui.NumberField;
 
-import com.ipgg.ipggos.model.common.OrdemServico;
+import com.ipgg.ipggos.model.OrdemServico;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
@@ -203,13 +203,13 @@ public class TelaSolicitacao extends FormLayout implements View {
 			
 			try {
 				this.binder.writeBean(this.ordemServico);
-				System.out.println("this.ordemServico.getNos() ->" + this.ordemServico.getNos());
+				System.out.println("this.ordemServico.getNos() ->" + this.ordemServico.getId());
 				System.out.println("this.ordemServico.getSolicitante() ->" + this.ordemServico.getSolicitante());
 				System.out.println("this.ordemServico.getGerencia()-> "+this.ordemServico.getGerencia());
 				System.out.println("this.ordemServico.getDiretoria() ->" +this.ordemServico.getDiretoria());
 				System.out.println("this.ordemServico.getTipoServico() ->" +this.ordemServico.getTipoServico());
 				System.out.println("this.ordemServico.getBemPatrimonial() ->" +this.ordemServico.getBemPatrimonial());
-				System.out.println("this.ordemServico.getnPatrimonio() ->" +this.ordemServico.getnPatrimonio());
+				System.out.println("this.ordemServico.getnPatrimonio() ->" +this.ordemServico.getNumPatrimonio());
 				System.out.println("this.ordemServico.getDescricaoServico() ->" +this.ordemServico.getDescricaoServico());
 				System.out.println("this.ordemServico.getGrauNecessidade() ->" +this.ordemServico.getGrauNecessidade());
 				System.out.println("this.ordemServico.getRechamado() ->" +this.ordemServico.getRechamado());

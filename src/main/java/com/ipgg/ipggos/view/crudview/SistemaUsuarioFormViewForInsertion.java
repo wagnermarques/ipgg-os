@@ -6,11 +6,12 @@ import java.io.File;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipgg_os.model.sistema.SistemaUsuario;
-import com.ipgg.ipgg_os.persistence.GenericHibernateDAOImp;
-import com.ipgg.ipgg_os.persistence.HibernateUtil;
-import com.ipgg.ipgg_os.persistence.IGenericDAO;
-import com.ipgg.ipgg_os.view.vaadin.Main;
+import com.ipgg.ipggos.model.OrdemServico;
+import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
+import com.ipgg.ipggos.persistence.HibernateUtil;
+import com.ipgg.ipggos.persistence.IGenericDAO;
+import com.ipgg.ipggos.view.vaadin.Main;
 import com.vaadin.data.Binder;
 import com.vaadin.data.ValidationException;
 import com.vaadin.icons.VaadinIcons;
@@ -115,7 +116,7 @@ public class SistemaUsuarioFormViewForInsertion extends FormLayout implements Vi
 		@Override
 		public void enter(ViewChangeEvent event) {
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
+			this.pDAO = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);
 			View.super.enter(event);
 		}
 

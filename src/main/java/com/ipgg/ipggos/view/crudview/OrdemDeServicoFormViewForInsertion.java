@@ -6,7 +6,7 @@ import java.io.File;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+import com.ipgg.ipggos.model.OrdemServico;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
@@ -30,20 +30,20 @@ import com.vaadin.ui.TextField;
 
 
 
-public class SistemaUsuarioFormViewForInsertion extends FormLayout implements View {
+public class OrdemDeServicoFormViewForInsertion extends FormLayout implements View {
 
-		public final static String VIEW_NAME = "sistema_usuario_form_insertion";
-		public final static String FORM_CAPTION = "Formulario: Inserir Usuario do Sistema";
-		private SistemaUsuario sistUsuario;
-		private IGenericDAO<SistemaUsuario,Long> pDAO;
+		public final static String VIEW_NAME = "ordem_servico_form_insertion";
+		public final static String FORM_CAPTION = "Formulario: Inserir Ordem de Servico";
+		private OrdemServico odemDeServico;
+		private IGenericDAO<OrdemServico,Long> pDAO;
 		
-		public SistemaUsuarioFormViewForInsertion() {
+		public OrdemDeServicoFormViewForInsertion() {
 			
-			this.sistUsuario = new SistemaUsuario();
-			Binder<SistemaUsuario> pessBinder = new Binder<>(SistemaUsuario.class);
-			pessBinder.setBean(this.sistUsuario);
+			this.odemDeServico = new OrdemServico();
+			Binder<OrdemServico> pessBinder = new Binder<>(OrdemServico.class);
+			pessBinder.setBean(this.odemDeServico);
 			
-			this.setCaption(SistemaUsuarioFormViewForInsertion.FORM_CAPTION);		
+			this.setCaption(OrdemDeServicoFormViewForInsertion.FORM_CAPTION);		
 			
 			
 			GridLayout gridLayout = new GridLayout(2,3);//2 colunas e 3 linhas
@@ -87,10 +87,10 @@ public class SistemaUsuarioFormViewForInsertion extends FormLayout implements Vi
 			Button btnSalvar = new Button("Salvar");
 			btnSalvar.addClickListener((e)->{
 				try {
-					pessBinder.writeBean(this.sistUsuario);
+					pessBinder.writeBean(this.odemDeServico);
 					Session session = HibernateUtil.getSessionFactory().openSession();
 					this.pDAO.beginTransaction();
-					this.pDAO.inserir(this.sistUsuario);
+					this.pDAO.inserir(this.odemDeServico);
 					this.pDAO.commit();
 					
 					new Notification("Operacao Concluida com Sucesso",
@@ -115,7 +115,7 @@ public class SistemaUsuarioFormViewForInsertion extends FormLayout implements Vi
 		@Override
 		public void enter(ViewChangeEvent event) {
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
+			this.pDAO = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);
 			View.super.enter(event);
 		}
 

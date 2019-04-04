@@ -16,6 +16,7 @@ import org.jboss.logging.Logger;
 import com.ipgg.ipggos.model.sistema.SistemaUsuario;
 
 
+
 /**
  * @author wagner
  *

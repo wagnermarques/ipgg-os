@@ -10,7 +10,7 @@ public class OrdemServico {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long nos;
+	private Long Id;
 
 	private String solicitante;
 	private String gerencia;
@@ -19,7 +19,7 @@ public class OrdemServico {
 	private String servico;
 	private String tipoServico;
 	private String bemPatrimonial;
-	private String nPatrimonio;
+	private String numPatrimonio;
 	private String descricaoServico;
 	private String grauNecessidade;
 	private Boolean rechamado;
@@ -27,12 +27,12 @@ public class OrdemServico {
 	private String status;
 	
 
-	public Long getNos() {
-		return nos;
+	public Long getId() {
+		return Id;
 	}
 
-	public void setNos(Long nos) {
-		this.nos = nos;
+	public void setId(Long id) {
+		this.Id = id;
 	}
 
 	public String getSolicitante() {
@@ -91,12 +91,12 @@ public class OrdemServico {
 		this.bemPatrimonial = bemPatrimonial;
 	}
 
-	public String getnPatrimonio() {
-		return nPatrimonio;
+	public String getNumPatrimonio() {
+		return numPatrimonio;
 	}
 
 	public void setnPatrimonio(String nPatrimonio) {
-		this.nPatrimonio = nPatrimonio;
+		this.numPatrimonio = nPatrimonio;
 	}
 
 	public String getDescricaoServico() {
@@ -140,7 +140,7 @@ public class OrdemServico {
 
 	@Override
 	public String toString() {
-		return this.getNos()+":"+this.descricaoServico;
+		return this.getId()+":"+this.descricaoServico;
 	}
 	
 	

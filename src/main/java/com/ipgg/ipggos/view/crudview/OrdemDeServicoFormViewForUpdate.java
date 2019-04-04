@@ -6,7 +6,7 @@ import java.io.File;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+import com.ipgg.ipggos.model.OrdemServico;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
@@ -29,18 +29,18 @@ import com.vaadin.ui.TextField;
 
 
 
-public class SistemaUsuarioFormViewForUpdate extends FormLayout implements View {
+public class OrdemDeServicoFormViewForUpdate extends FormLayout implements View {
 
-		public final static String VIEW_NAME = "sistema_usuario_form_update";
-		public final static String FORM_CAPTION = "Formulario: Alterar Usuario do Sistema";
-		private SistemaUsuario sistUsuario;
-		private Binder<SistemaUsuario> pessBinder; 
-		private IGenericDAO<SistemaUsuario,Long> pDAO;
+		public final static String VIEW_NAME = "ordem_servico_form_update";
+		public final static String FORM_CAPTION = "Formulario: Alterar Ordem de Servico";
+		private OrdemServico ordemDeServico;
+		private Binder<OrdemServico> pessBinder; 
+		private IGenericDAO<OrdemServico,Long> osDAO;
 		
-		public SistemaUsuarioFormViewForUpdate() {
+		public OrdemDeServicoFormViewForUpdate() {
 			
-			this.sistUsuario = null; //A instancia de usuairo a ser alterada sera setada no evento enter da view			
-			this.setCaption(SistemaUsuarioFormViewForUpdate.FORM_CAPTION);		
+			this.ordemDeServico = null; //A instancia de usuairo a ser alterada sera setada no evento enter da view			
+			this.setCaption(OrdemDeServicoFormViewForUpdate.FORM_CAPTION);		
 						
 			GridLayout gridLayout = new GridLayout(2,3);//2 colunas e 3 linhas
 			gridLayout.setWidth("80%");
@@ -60,7 +60,7 @@ public class SistemaUsuarioFormViewForUpdate extends FormLayout implements View 
 			
 			
 			
-			this.pessBinder = new Binder<>(SistemaUsuario.class);
+			this.pessBinder = new Binder<>(OrdemServico.class);
 			
 			//TextField para login
 			TextField txtLogin = new TextField("Login");
@@ -85,11 +85,11 @@ public class SistemaUsuarioFormViewForUpdate extends FormLayout implements View 
 			Button btnSalvar = new Button("Salvar");
 			btnSalvar.addClickListener((e)->{
 				try {
-					pessBinder.writeBean(this.sistUsuario);
+					pessBinder.writeBean(this.ordemDeServico);
 					Session session = HibernateUtil.getSessionFactory().openSession();
-					this.pDAO.beginTransaction();
-					this.pDAO.alterar(this.sistUsuario);
-					this.pDAO.commit();
+					this.osDAO.beginTransaction();
+					this.osDAO.alterar(this.ordemDeServico);
+					this.osDAO.commit();
 					
 					new Notification("Operacao Concluida com Sucesso",
 						    "Msg de Operac Concluid com sucess",
@@ -110,17 +110,17 @@ public class SistemaUsuarioFormViewForUpdate extends FormLayout implements View 
 		public void enter(ViewChangeEvent event) {
 			Long suId = Long.parseLong(event.getParameters());
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
-			this.sistUsuario = this.pDAO.getById(suId);
+			this.osDAO = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);
+			this.ordemDeServico = this.osDAO.getById(suId);
 						
-			this.pessBinder.setBean(this.sistUsuario);
+			this.pessBinder.setBean(this.ordemDeServico);
 			View.super.enter(event);
 		}
 
 		@Override
 		public void beforeLeave(ViewBeforeLeaveEvent event) {
-			this.pDAO.closeSession();
-			this.pDAO = null;
+			this.osDAO.closeSession();
+			this.osDAO = null;
 			View.super.beforeLeave(event);
 		}
 

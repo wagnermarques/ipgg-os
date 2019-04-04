@@ -25,7 +25,7 @@ public class SistemaUsuarioListView extends VerticalLayout implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private static int numacessos = 0;
+	private int numacessos = 0;
 	
 	public static String VIEW_NAME="sistema_usuario_list_view";
 	
@@ -48,8 +48,7 @@ public class SistemaUsuarioListView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-            SistemaUsuarioListView.numacessos =+ 1;
-		logger.info(" ### public void enter(ViewChangeEvent event) {... [numacessos] => "+ SistemaUsuarioListView.numacessos);
+		logger.info(" ### public void enter(ViewChangeEvent event) {... [numacessos] => "+this.numacessos++);
 		
 		//Cada vez que a view entra a gente quer controlar o seu estado desde o inicio
 		//a gente descarta o estado anterior e inicia o estado dela tudo de novo

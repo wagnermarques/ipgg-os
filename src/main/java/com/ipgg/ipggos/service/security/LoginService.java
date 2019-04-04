@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.hibernate.Session;
-
 import com.ipgg.ipggos.model.sistema.SistemaUsuario;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.SistemaUsuarioHibernateDAO;

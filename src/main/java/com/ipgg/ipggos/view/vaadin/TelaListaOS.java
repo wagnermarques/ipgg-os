@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipggos.model.common.OrdemServico;
+import com.ipgg.ipggos.model.OrdemServico;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.view.crudview.OrdemServicoFormViewForUpdate;
@@ -49,7 +49,7 @@ public class TelaListaOS extends VerticalLayout implements View {
 		grid.setCaption("Ordem de Chamado");
 		grid.setWidth("80%");
 		grid.setSizeFull();
-		grid.addColumn(OrdemServico::getNos).setCaption("Nº O.S.");
+		grid.addColumn(OrdemServico::getId).setCaption("Nº O.S.");
 		grid.addColumn(OrdemServico::getSolicitante).setCaption("Solicitante");
 		grid.addColumn(OrdemServico::getDiretoria).setCaption("Diretoria");
 		grid.addColumn(OrdemServico::getTipoServico).setCaption("Tipo Serviço");

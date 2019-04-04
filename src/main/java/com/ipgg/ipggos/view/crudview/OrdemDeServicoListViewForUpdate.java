@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+import com.ipgg.ipggos.model.OrdemServico;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
@@ -21,23 +21,23 @@ import com.vaadin.ui.themes.ValoTheme;
 
 
 
-public class SistemaUsuarioListViewForUpdate extends VerticalLayout implements View {
+public class OrdemDeServicoListViewForUpdate extends VerticalLayout implements View {
 
-	Logger logger = Logger.getLogger(SistemaUsuarioListViewForUpdate.class.getCanonicalName());
+	Logger logger = Logger.getLogger(OrdemDeServicoListViewForUpdate.class.getCanonicalName());
 
-	private List<SistemaUsuario> listSistemaUsuarios;
-	private IGenericDAO<SistemaUsuario,Long> pDAO;
-	private Grid<SistemaUsuario> grid;
+	private List<OrdemServico> listOrdemServico;
+	private IGenericDAO<OrdemServico,Long> osDAO;
+	private Grid<OrdemServico> grid;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static String VIEW_NAME = "SistemaUsuario_list_view_for_Update";
+	public static String VIEW_NAME = "ordem_servico_list_view_for_Update";
 
-	public SistemaUsuarioListViewForUpdate() {
-		logger.info(" ### public SistemaUsuarioListViewForUpdate() {... ");
+	public OrdemDeServicoListViewForUpdate() {
+		logger.info(" ### public OrdemDeServicoListViewForUpdate() {... ");
 	}
 
 	
@@ -46,16 +46,27 @@ public class SistemaUsuarioListViewForUpdate extends VerticalLayout implements V
 	public void enter(ViewChangeEvent event) {
 		logger.info(" ### SistemaUsuarioListViewForUpdate -> public void enter(ViewChangeEvent event) {...");
 
-		this.listSistemaUsuarios = null;
+		this.listOrdemServico = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();		
-		this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);		
-		this.listSistemaUsuarios = this.pDAO.ListarTodos();
+		this.osDAO = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);		
+		this.listOrdemServico = this.osDAO.ListarTodos();
 		
 		this.grid = new Grid<>();
-		this.grid.setItems(this.listSistemaUsuarios);
-		this.grid.addColumn(SistemaUsuario::getId).setCaption("Id");
-		this.grid.addColumn(SistemaUsuario::getLogin).setCaption("Login");
-			
+		this.grid.setItems(this.listOrdemServico);
+		this.grid.addColumn(OrdemServico::getId).setCaption("id");
+		this.grid.addColumn(OrdemServico::getSolicitante).setCaption("Solicitante");
+		this.grid.addColumn(OrdemServico::getGerencia).setCaption("Gerencia");
+		this.grid.addColumn(OrdemServico::getDiretoria).setCaption("Diretoria");
+		this.grid.addColumn(OrdemServico::getLocal).setCaption("Local");
+		this.grid.addColumn(OrdemServico::getServico).setCaption("Servico");
+		this.grid.addColumn(OrdemServico::getTipoServico).setCaption("TipoServico");
+		this.grid.addColumn(OrdemServico::getBemPatrimonial).setCaption("BemPatrimonial");
+		this.grid.addColumn(OrdemServico::getNumPatrimonio).setCaption("NumPatrimonio");
+		this.grid.addColumn(OrdemServico::getDescricaoServico).setCaption("DescricaoServico");
+		this.grid.addColumn(OrdemServico::getGrauNecessidade).setCaption("GrauNecessidade");
+		this.grid.addColumn(OrdemServico::getRechamado).setCaption("Rechamado");
+		this.grid.addColumn(OrdemServico::getOsAnterior).setCaption("OsAnterior");
+		this.grid.addColumn(OrdemServico::getStatus).setCaption("Status");			
 		this.grid.setFrozenColumnCount(2);
 		this.grid.addComponentColumn(this::buildUpdateButton);
 		
@@ -63,22 +74,20 @@ public class SistemaUsuarioListViewForUpdate extends VerticalLayout implements V
 		View.super.enter(event);
 	}
 
-	private Button buildUpdateButton(SistemaUsuario su) {
+	private Button buildUpdateButton(OrdemServico os) {
 		Button button = new Button(VaadinIcons.EDIT);
 		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		button.addClickListener(e -> Main.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME+"/"+su.getId()));
+		button.addClickListener(e -> Main.navigator.navigateTo(OrdemDeServicoFormViewForUpdate.VIEW_NAME+"/"+os.getId()));
 		return button;
 	}
 
 	@Override
 	public void beforeLeave(ViewBeforeLeaveEvent event) {
-		if(this.pDAO != null) {
-			this.pDAO.closeSession();
-			this.pDAO = null;
+		if(this.osDAO != null) {
+			this.osDAO.closeSession();
+			this.osDAO = null;
 		}
 		View.super.beforeLeave(event);
 	}
 
-	
-	
 }

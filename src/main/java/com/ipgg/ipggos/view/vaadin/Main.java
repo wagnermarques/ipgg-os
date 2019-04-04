@@ -4,15 +4,14 @@ import java.util.Locale;
 
 import javax.servlet.annotation.WebServlet;
 
-import com.ipgg.ipggos.model.common.OrdemServico;
 import com.ipgg.ipggos.view.crudview.OrdemServicoFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
-import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
-import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
-import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForUpdate;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.menu.MenuPrincipal;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -75,9 +74,9 @@ public class Main extends UI {
 		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, ordemServicoFormViewForUpdate);
 		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
 		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);        
-		navigator.addView(SistemaUsuarioFormViewForInsertion.VIEW_NAME, new SistemaUsuarioFormViewForInsertion());
-		navigator.addView(SistemaUsuarioListViewForUpdate.VIEW_NAME, new SistemaUsuarioListViewForUpdate());
-		navigator.addView(SistemaUsuarioListViewForDeletion.VIEW_NAME, new SistemaUsuarioListViewForDeletion());
+		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
+		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
+		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(null, null));
 		navigator.addView(PessoaListViewForDeletion.VIEW_NAME, new PessoaListViewForDeletion());

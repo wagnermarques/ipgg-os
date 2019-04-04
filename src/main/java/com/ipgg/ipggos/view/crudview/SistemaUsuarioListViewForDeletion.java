@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 import org.hibernate.Session;
 
-import com.ipgg.ipgg_os.model.sistema.SistemaUsuario;
-import com.ipgg.ipgg_os.persistence.GenericHibernateDAOImp;
-import com.ipgg.ipgg_os.persistence.HibernateUtil;
-import com.ipgg.ipgg_os.persistence.IGenericDAO;
+import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
+import com.ipgg.ipggos.persistence.HibernateUtil;
+import com.ipgg.ipggos.persistence.IGenericDAO;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewBeforeLeaveEvent;
