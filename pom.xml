@@ -16,10 +16,10 @@
 
 		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 		<jetty.http.port>9999</jetty.http.port>
-		<tomcat.http.port>9999</tomcat.http.port>
+		<tomcat.http.port>80</tomcat.http.port>
 
-		<tomcat8-instance-hostname>localhost</tomcat8-instance-hostname>
-		<tomcat8-instance-servlet-port>8091</tomcat8-instance-servlet-port>
+		<tomcat8-instance-hostname>192.168.0.141</tomcat8-instance-hostname>
+		<tomcat8-instance-servlet-port>80</tomcat8-instance-servlet-port>
 		<tomcat8-instance-username>admin</tomcat8-instance-username>
 		<tomcat8-instance-password>admin123</tomcat8-instance-password>
 
@@ -192,6 +192,22 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.4</version>
 		</dependency>
+
+                <!-- https://mvnrepository.com/artifact/postgresql/postgresql 
+                <dependency>
+                  <groupId>postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <version>9.1-901-1.jdbc4</version>
+                </dependency>
+                facing org.postgresql.Driver not found with this dependency
+                -->
+                <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                <dependency>
+                  <groupId>org.postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <version>42.2.5</version>
+                </dependency>
+
 	</dependencies>
 
 

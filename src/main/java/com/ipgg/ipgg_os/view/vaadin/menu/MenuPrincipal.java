@@ -22,6 +22,7 @@ public class MenuPrincipal {
     	MenuBar barmenu = new MenuBar();        
         
         MenuItem mnuItemcadastro = barmenu.addItem("Cadastro", null, null);
+        MenuItem mnuOrdemDeServicos = barmenu.addItem("Ordem de Servico", null, null);
         
         //Itens (Nivel 1) da barra de menus
         MenuItem barItem_UsuarioDoSistema = mnuItemcadastro.addItem("Usuario do Sistema",null,null);
@@ -54,6 +55,21 @@ public class MenuPrincipal {
         MenuItem mnuItem_Pessoa_PESQUISAR = barItem_Pessoa.addItem("Pesquisar  (funciona)",null,null);
         mnuItem_Pessoa_PESQUISAR.setCommand((selectedItem) -> Main.navigator.navigateTo(PessoaListView.VIEW_NAME));
         
+
+
+        //Items do menu ORDEM DE SERVICO
+        //Sistema Usuario
+        MenuItem mnuItem_OS_INSERIR = barItem_UsuarioDoSistema.addItem("Inserir (funciona)",null,null);
+        mnuItem_OS_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoFormViewForInsertion.VIEW_NAME));
+        
+        MenuItem mnuItem_OS_INSERIR_ALTERAR = barItem_UsuarioDoSistema.addItem("Alterar (em desenvolvimento)",null,null);
+        mnuItem_OS_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForUpdate.VIEW_NAME));
+        
+        MenuItem mnuItem_OS_EXCLUIR = barItem_UsuarioDoSistema.addItem("Excluir (funciona)",null,null);
+        mnuItem_OS_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForDeletion.VIEW_NAME));
+        
+        MenuItem mnuItem_OS_PESQUISAR = barItem_UsuarioDoSistema.addItem("Pesquisar  (funciona)",null,null);
+        mnuItem_OS_PESQUISAR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoListView.VIEW_NAME));
         
         return barmenu;
     }
