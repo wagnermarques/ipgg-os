@@ -59,24 +59,25 @@ public class Main extends UI {
 
 	private void configNavigation(VerticalLayout bodyLayout) {
 	
-    	TelaSolicitacao telaSolicitacao = new TelaSolicitacao();
-		TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
-		TelaFeedBack telaFeedBack = new TelaFeedBack();
+    	//TelaSolicitacao telaSolicitacao = new TelaSolicitacao();
+		//TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
+		//TelaFeedBack telaFeedBack = new TelaFeedBack();
 		//TelaLogin telaLogin = new TelaLogin();
-		TelaListaOS telaListaOS = new TelaListaOS();
-		OrdemServicoFormViewForUpdate ordemServicoFormViewForUpdate = new OrdemServicoFormViewForUpdate();
+		//TelaListaOS telaListaOS = new TelaListaOS();
+		//OrdemServicoFormViewForUpdate ordemServicoFormViewForUpdate = new OrdemServicoFormViewForUpdate();
 		
 		navigator = new Navigator(this, bodyLayout);
-		navigator.addView("", telaListaOS);
-		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);
-		navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
-		navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
-		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, ordemServicoFormViewForUpdate);
-		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
-		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);        
-		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
-		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
-		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
+//		navigator.addView("", telaListaOS);
+//		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);
+//		navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
+//		navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
+//		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, ordemServicoFormViewForUpdate);
+//		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
+//		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);        
+//		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
+//		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
+//		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
+		navigator.addView("", new SistemaUsuarioListView());
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(null, null));
 		navigator.addView(PessoaListViewForDeletion.VIEW_NAME, new PessoaListViewForDeletion());

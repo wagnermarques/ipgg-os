@@ -26,6 +26,7 @@ public class MenuPrincipal {
         
         //Itens (Nivel 1) da barra de menus
         MenuItem barItem_UsuarioDoSistema = mnuItemcadastro.addItem("Usuario do Sistema",null,null);
+        MenuItem barItem_OrdemDeServico = mnuOrdemDeServicos.addItem("Ordens de Servicos",null,null);
         MenuItem barItem_Pessoa = mnuItemcadastro.addItem("Pessoas",null,null);
         MenuItem barItem_Ajuda = barmenu.addItem("Ajuda", null, null);
         MenuItem barItem_Sobre = barItem_Ajuda.addItem("Sobre", null, null);
@@ -58,17 +59,16 @@ public class MenuPrincipal {
 
 
         //Items do menu ORDEM DE SERVICO
-        //Sistema Usuario
-        MenuItem mnuItem_OS_INSERIR = barItem_UsuarioDoSistema.addItem("Inserir (funciona)",null,null);
+        MenuItem mnuItem_OS_INSERIR = barItem_OrdemDeServico.addItem("Inserir (Testar)",null,null);
         mnuItem_OS_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoFormViewForInsertion.VIEW_NAME));
         
-        MenuItem mnuItem_OS_ALTERAR = barItem_UsuarioDoSistema.addItem("Alterar (em desenvolvimento)",null,null);
+        MenuItem mnuItem_OS_ALTERAR = barItem_OrdemDeServico.addItem("Alterar (em desenvolvimento)",null,null);
         mnuItem_OS_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForUpdate.VIEW_NAME));
         
-        MenuItem mnuItem_OS_EXCLUIR = barItem_UsuarioDoSistema.addItem("Excluir (funciona)",null,null);
+        MenuItem mnuItem_OS_EXCLUIR = barItem_OrdemDeServico.addItem("Excluir (funciona)",null,null);
         mnuItem_OS_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForDeletion.VIEW_NAME));
         
-        MenuItem mnuItem_OS_PESQUISAR = barItem_UsuarioDoSistema.addItem("Pesquisar  (funciona)",null,null);
+        MenuItem mnuItem_OS_PESQUISAR = barItem_OrdemDeServico.addItem("Pesquisar  (funciona)",null,null);
         mnuItem_OS_PESQUISAR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoListView.VIEW_NAME));
         
         return barmenu;

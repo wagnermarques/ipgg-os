@@ -63,7 +63,7 @@ public class SistemaUsuarioListView extends VerticalLayout implements View {
 		Session session = HibernateUtil.getSessionFactory().openSession();				
 		suDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
 		this.listSistUsuarios = this.suDAO.ListarTodos();
-		logger.info(this.listSistUsuarios.toString());
+		//logger.info(this.listSistUsuarios.toString());
 		//https://stackoverflow.com/questions/31861375/vaadin-refresh-grid-after-row-modification
 		
 		//setEditorEnabled(true);

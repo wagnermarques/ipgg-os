@@ -24,7 +24,7 @@ import com.vaadin.ui.TextField;
 public class TelaSolicitacao extends FormLayout implements View {
 	protected static final String VIEW_NAME = "tela_solicitacao";
 
-	private TextField nos;
+	//private TextField nos;
 	private TextField solicitante;
 	private TextField gerencia;
 	private TextField diretoria;
@@ -38,7 +38,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 	private ComboBox<Boolean> rechamado;
 	private NumberField osAnterior;
 	private OrdemServico ordemServico;
-	private IGenericDAO<OrdemServico, Long> pDao;
+	private IGenericDAO<OrdemServico, Long> osDao;
 	private Button confirmar;
 	private Button cancelar;
 
@@ -51,12 +51,12 @@ public class TelaSolicitacao extends FormLayout implements View {
 		this.ordemServico = new OrdemServico();	
 		this.binder.setBean(ordemServico);	
 	
-		nos = new NumberField("Nº O.S.");
-		nos.setEnabled(false);
-		nos.setReadOnly(true);
-		nos.setDescription("Nº da Ordem de Serviço");
-		nos.setWidth("80%");
-		//binder.forField(nos).bind("nos");
+//		nos = new NumberField("Nº O.S.");
+//		nos.setEnabled(false);
+//		nos.setReadOnly(true);
+//		nos.setDescription("Nº da Ordem de Serviço");
+//		nos.setWidth("80%");
+		//binder.forField(nos).bind("id");
 		
 		solicitante = new TextField("Solicitante Autorizado");
 		binder.forField(solicitante).bind("solicitante");
@@ -83,7 +83,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		bemPatrimonial.setWidth("80%");
 		
 		nPatrimonio = new TextField("Nº de Patrimônio");
-		binder.forField(nPatrimonio).bind("nPatrimonio");
+		binder.forField(nPatrimonio).bind("numPatrimonio");
 		
 		descricaoServico = new TextArea("Descrição do Serviço a ser realizado");
 		binder.forField(descricaoServico).bind("descricaoServico");
@@ -203,7 +203,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 			
 			try {
 				this.binder.writeBean(this.ordemServico);
-				System.out.println("this.ordemServico.getNos() ->" + this.ordemServico.getId());
+				System.out.println("this.ordemServico.getId() ->" + this.ordemServico.getId());
 				System.out.println("this.ordemServico.getSolicitante() ->" + this.ordemServico.getSolicitante());
 				System.out.println("this.ordemServico.getGerencia()-> "+this.ordemServico.getGerencia());
 				System.out.println("this.ordemServico.getDiretoria() ->" +this.ordemServico.getDiretoria());
@@ -227,7 +227,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		cancelar.setDescription("Cancelar O.S.");
 		cancelar.addListener((e) -> Main.navigator.navigateTo(TelaListaOS.VIEW_NAME));
 
-		addComponent(nos);
+		//addComponent(nos);
 		addComponent(solicitante);
 		addComponent(gerencia);
 		addComponent(diretoria);

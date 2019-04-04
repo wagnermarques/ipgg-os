@@ -57,12 +57,12 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
        <!-- 
       <property name="hibernate.hbm2ddl.auto">create-drop</property>
       -->
-      <mapping class="com.ipgg.ipgg_os.model.sistema.SistemaUsuario" />
-      <mapping class="com.ipgg.ipgg_os.model.sistema.SistemaUsuarioRole" />
-      <mapping class="com.ipgg.ipgg_os.model.common.AvaliacaoOS" />      
-      <mapping class="com.ipgg.ipgg_os.model.common.FeedbackOS" />      
-      <mapping class="com.ipgg.ipgg_os.model.common.OrdemServico" />                      
-      <mapping class="com.ipgg.ipgg_os.model.common.Pessoa" />
+      <mapping class="com.ipgg.ipggos.model.sistema.SistemaUsuario" />
+      <mapping class="com.ipgg.ipggos.model.sistema.SistemaUsuarioRole" />
+      <mapping class="com.ipgg.ipggos.model.common.AvaliacaoOS" />      
+      <mapping class="com.ipgg.ipggos.model.common.FeedbackOS" />      
+      <mapping class="com.ipgg.ipggos.model.OrdemServico" />                      
+      <mapping class="com.ipgg.ipggos.model.common.Pessoa" />
       
       
   </session-factory>
