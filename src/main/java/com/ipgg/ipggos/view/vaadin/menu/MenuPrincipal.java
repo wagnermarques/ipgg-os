@@ -10,6 +10,7 @@ import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.Main;
@@ -41,7 +42,7 @@ public class MenuPrincipal {
         mnuItem_UsuarioDoSistema_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(SistemaUsuarioFormViewForInsertion.VIEW_NAME));
         
         MenuItem mnuItem_UsuarioDoSistema_ALTERAR = barItem_UsuarioDoSistema.addItem("Alterar (em desenvolvimento)",null,null);
-        mnuItem_UsuarioDoSistema_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME));
+        mnuItem_UsuarioDoSistema_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(SistemaUsuarioListViewForUpdate.VIEW_NAME));
         
         MenuItem mnuItem_UsuarioDoSistema_EXCLUIR = barItem_UsuarioDoSistema.addItem("Excluir (funciona)",null,null);
         mnuItem_UsuarioDoSistema_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(SistemaUsuarioListViewForDeletion.VIEW_NAME));

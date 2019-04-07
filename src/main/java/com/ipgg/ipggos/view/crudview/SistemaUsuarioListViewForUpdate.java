@@ -9,76 +9,66 @@ import com.ipgg.ipggos.model.sistema.SistemaUsuario;
 import com.ipgg.ipggos.persistence.GenericHibernateDAOImp;
 import com.ipgg.ipggos.persistence.HibernateUtil;
 import com.ipgg.ipggos.persistence.IGenericDAO;
-import com.ipgg.ipggos.view.vaadin.Main;
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewBeforeLeaveEvent;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
-
-
 
 public class SistemaUsuarioListViewForUpdate extends VerticalLayout implements View {
 
-	Logger logger = Logger.getLogger(SistemaUsuarioListViewForUpdate.class.getCanonicalName());
-
-	private List<SistemaUsuario> listSistemaUsuarios;
-	private IGenericDAO<SistemaUsuario,Long> pDAO;
-	private Grid<SistemaUsuario> grid;
+	Logger logger = Logger.getLogger(SistemaUsuarioListView.class.getCanonicalName());
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static String VIEW_NAME = "SistemaUsuario_list_view_for_Update";
+	private int numacessos = 0;
+
+	public static String VIEW_NAME = "sistema_usuario_list_view";
+	
+	public static String VIEW_CAPTION = "Modificar Usuario (SistemaUsuarioListViewForUpdate)";
+
+	private List<SistemaUsuario> listSistUsuarios;
+	private IGenericDAO<SistemaUsuario, Long> suDAO;
+
+	private Grid<SistemaUsuario> grid;
 
 	public SistemaUsuarioListViewForUpdate() {
-		logger.info(" ### public SistemaUsuarioListViewForUpdate() {... ");
-	}
+			logger.info(" ### public SistemaUsuarioListViewForUpdate() {... ");
+			this.grid = new Grid<>();
+			this.grid.addColumn(SistemaUsuario::getId).setCaption("id");
+			this.grid.addColumn(SistemaUsuario::getLogin).setCaption("Login");
+			this.grid.addColumn(SistemaUsuario::getSenha).setCaption("senha");		
+			this.grid.setFrozenColumnCount(2);                
+			this.addComponent(this.grid);
+			setCaption(SistemaUsuarioFormViewForUpdate.FORM_CAPTION);
+		}
 
-	
-	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		logger.info(" ### SistemaUsuarioListViewForUpdate -> public void enter(ViewChangeEvent event) {...");
+		logger.info(" ### public void enter(ViewChangeEvent event) {... [numacessos] => " + this.numacessos++);
 
-		this.listSistemaUsuarios = null;
-		Session session = HibernateUtil.getSessionFactory().openSession();		
-		this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);		
-		this.listSistemaUsuarios = this.pDAO.ListarTodos();
-		
-		this.grid = new Grid<>();
-		this.grid.setItems(this.listSistemaUsuarios);
-		this.grid.addColumn(SistemaUsuario::getId).setCaption("Id");
-		this.grid.addColumn(SistemaUsuario::getLogin).setCaption("Login");
-			
-		this.grid.setFrozenColumnCount(2);
-		this.grid.addComponentColumn(this::buildUpdateButton);
-		
-		this.addComponent(grid);
+		// Cada vez que a view entra a gente quer controlar o seu estado desde o inicio
+		// a gente descarta o estado anterior e inicia o estado dela tudo de novo
+		this.listSistUsuarios = null;
+
+		if (this.suDAO != null) {
+			this.suDAO.clearSession();
+			this.suDAO.closeSession();
+			this.suDAO = null;
+		}
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		suDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
+		this.listSistUsuarios = this.suDAO.ListarTodos();
+		// logger.info(this.listSistUsuarios.toString());
+		// https://stackoverflow.com/questions/31861375/vaadin-refresh-grid-after-row-modification
+
+		// setEditorEnabled(true);
+		// this.grid.setEditorEnabled(false);
+		this.grid.getDataProvider().refreshAll();
+		this.grid.setItems(this.listSistUsuarios);
 		View.super.enter(event);
 	}
-
-	private Button buildUpdateButton(SistemaUsuario su) {
-		Button button = new Button(VaadinIcons.EDIT);
-		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		button.addClickListener(e -> Main.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME+"/"+su.getId()));
-		return button;
-	}
-
-	@Override
-	public void beforeLeave(ViewBeforeLeaveEvent event) {
-		if(this.pDAO != null) {
-			this.pDAO.closeSession();
-			this.pDAO = null;
-		}
-		View.super.beforeLeave(event);
-	}
-
-	
-	
 }

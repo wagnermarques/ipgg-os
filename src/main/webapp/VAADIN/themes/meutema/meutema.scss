@@ -37,14 +37,13 @@ $v-app-border-color: $v-border-color;
 @mixin meutema {
   @include valo;
 
-
   .mainLayout {
     border: 1px solid black;
     background-color: blue;
   }
   .bodyLayout {
     border: 1px solid blue;
-    background-color:green;
+    background-color: yellow;
   }
 
   

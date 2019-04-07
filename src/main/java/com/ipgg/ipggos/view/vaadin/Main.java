@@ -55,6 +55,7 @@ public class Main extends UI {
     	VerticalLayout bodyLayout = new VerticalLayout();
     	bodyLayout.setCaption("BodyLayoutCaption");
     	bodyLayout.setWidth("100%");
+    	bodyLayout.setStyleName("bodyLayout");
     	
     	
     	mainLayout.addComponent(MenuPrincipal.getInstance());
@@ -75,7 +76,7 @@ public class Main extends UI {
     	//TelaSolicitacao telaSolicitacao = new TelaSolicitacao();
 		//TelaAvaliacao telaAvaliacao = new TelaAvaliacao();
 		//TelaFeedBack telaFeedBack = new TelaFeedBack();
-		//TelaLogin telaLogin = new TelaLogin();
+		TelaLogin telaLogin = new TelaLogin();
 		//TelaListaOS telaListaOS = new TelaListaOS();
 		//OrdemServicoFormViewForUpdate ordemServicoFormViewForUpdate = new OrdemServicoFormViewForUpdate();
 		
@@ -88,7 +89,7 @@ public class Main extends UI {
 //		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
 //		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);
 
-		navigator.addView("", new SistemaUsuarioListView());
+		navigator.addView("", new TelaLogin());
 		
 		navigator.addView(OrdemDeServicoListView.VIEW_NAME, new OrdemDeServicoListView());
 		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
@@ -97,7 +98,9 @@ public class Main extends UI {
 						
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
 		navigator.addView(SistemaUsuarioFormViewForInsertion.VIEW_NAME, new SistemaUsuarioFormViewForInsertion());
+		navigator.addView(SistemaUsuarioListViewForUpdate.VIEW_NAME, new SistemaUsuarioListViewForUpdate());
 		navigator.addView(SistemaUsuarioFormViewForUpdate.VIEW_NAME, new SistemaUsuarioFormViewForUpdate());
+		
 		navigator.addView(SistemaUsuarioListViewForDeletion.VIEW_NAME, new SistemaUsuarioListViewForDeletion());
 		
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(null, null));
