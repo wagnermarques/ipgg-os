@@ -3,8 +3,8 @@
 // Global variable overrides. Must be declared before importing Valo.
 
 // Defines the plaintext font size, weight and family. Font size affects general component sizing.
-//$v-font-size: 16px;
-//$v-font-weight: 300;
+$v-font-size: 12px;
+$v-font-weight: 300;
 //$v-font-family: "Open Sans", sans-serif;
 
 // Defines the border used by all components.
@@ -13,8 +13,11 @@
 
 // Affects the color of some component elements, e.g Button, Panel title, etc
 //$v-background-color: hsl(210, 0%, 98%);
+//$v-border-color: black;
+
 // Affects the color of content areas, e.g  Panel and Window content, TextField input etc
-//$v-app-background-color: $v-background-color;
+$v-app-background-color: $v-background-color;
+$v-app-border-color: $v-border-color;
 
 // Affects the visual appearance of all components
 //$v-gradient: v-linear 8%;
@@ -34,5 +37,16 @@
 @mixin meutema {
   @include valo;
 
+
+  .mainLayout {
+    border: 1px solid black;
+    background-color: blue;
+  }
+  .bodyLayout {
+    border: 1px solid blue;
+    background-color:green;
+  }
+
+  
   // Insert your own theme rules here
 }

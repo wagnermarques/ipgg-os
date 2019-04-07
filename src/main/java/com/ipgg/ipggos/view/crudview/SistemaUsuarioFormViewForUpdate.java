@@ -109,20 +109,20 @@ public class SistemaUsuarioFormViewForUpdate extends FormLayout implements View 
 
 		@Override
 		public void enter(ViewChangeEvent event) {
-			Long suId = Long.parseLong(event.getParameters());
+			//Long suId = Long.parseLong(event.getParameters());
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
-			this.sistUsuario = this.pDAO.getById(suId);
+			//this.pDAO = new GenericHibernateDAOImp<>(session, SistemaUsuario.class, Long.class);
+			//this.sistUsuario = this.pDAO.getById(suId);
 						
-			this.pessBinder.setBean(this.sistUsuario);
+			//this.pessBinder.setBean(this.sistUsuario);
 			View.super.enter(event);
 		}
 
 		@Override
 		public void beforeLeave(ViewBeforeLeaveEvent event) {
-			this.pDAO.closeSession();
-			this.pDAO = null;
-			View.super.beforeLeave(event);
+			//this.pDAO.closeSession();
+			//this.pDAO = null;
+			//View.super.beforeLeave(event);
 		}
 
 	}

@@ -27,6 +27,7 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 
 
 
@@ -40,54 +41,102 @@ public class OrdemDeServicoFormViewForInsertion extends FormLayout implements Vi
 		public OrdemDeServicoFormViewForInsertion() {
 			
 			this.odemDeServico = new OrdemServico();
-			Binder<OrdemServico> pessBinder = new Binder<>(OrdemServico.class);
-			pessBinder.setBean(this.odemDeServico);
+			Binder<OrdemServico> osBinder = new Binder<>(OrdemServico.class);
+			osBinder.setBean(this.odemDeServico);
 			
 			this.setCaption(OrdemDeServicoFormViewForInsertion.FORM_CAPTION);		
 			
 			
-			GridLayout gridLayout = new GridLayout(2,3);//2 colunas e 3 linhas
-			gridLayout.setWidth("80%");
-			gridLayout.setHeight("70%");
-			
-			// Mostra imagem a foto da pessoa
-			// TODO: criar uma maneira pro upload da imagem da foto da pessoa
-			// TODO: maneira de inserir primeiro uma pessoa e depois um usuario correspondente
-			FileResource resource = new FileResource(new File(Main.basepath + "/WEB-INF/images/defaultAccountImg.jpg"));			
-			Image image = new Image("Foto", resource);		
-			image.setWidth("90%");
-			image.setHeight("300px");
+			VerticalLayout vertLayout = new VerticalLayout();
 
-	        //Primeira coluna,Primeira linha ate a Primeira coluna mesmo e terceira linha
-			gridLayout.addComponent(image, 0, 0, 0, 2);
-			gridLayout.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+			vertLayout.setWidth("80%");
+			vertLayout.setHeight("70%");
+				       						
+			TextField txtSolicitante = new TextField("solicitante");
+			txtSolicitante.setWidth("80%");
+			txtSolicitante.setIcon(VaadinIcons.USER);			
+			txtSolicitante.setRequiredIndicatorVisible(true);		
+			osBinder.forField(txtSolicitante).bind("solicitante");
+			//gridLayout.addComponent(txtSolicitante);
 			
+			TextField txtGerencia = new TextField("gerencia");
+			txtGerencia.setWidth("80%");
+			txtGerencia.setIcon(VaadinIcons.USER);			
+			txtGerencia.setRequiredIndicatorVisible(true);		
+			osBinder.forField(txtGerencia).bind("gerencia");
+
+			TextField txtDiretoria = new TextField("diretoria");
+			txtDiretoria.setWidth("80%");
+			txtDiretoria.setIcon(VaadinIcons.USER);			
+			txtDiretoria.setRequiredIndicatorVisible(true);		
+			osBinder.forField(txtGerencia).bind("diretoria");
 			
-			//TextField para login
-			TextField txtLogin = new TextField("Login");
-			txtLogin.setWidth("80%");
-			txtLogin.setIcon(VaadinIcons.USER);			
-			txtLogin.setRequiredIndicatorVisible(true);			
-			pessBinder.forField(txtLogin).bind("login");		
+			TextField txtLocal = new TextField("local");
+			txtLocal.setWidth("80%");
+			txtLocal.setIcon(VaadinIcons.USER);			
+			txtLocal.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("local");
+			
+			TextField txtServico = new TextField("servico");
+			txtServico.setWidth("80%");
+			txtServico.setIcon(VaadinIcons.USER);			
+			txtServico.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("servico");
+			
+			TextField txtTipoServico = new TextField("tipoServico");
+			txtTipoServico.setWidth("80%");
+			txtTipoServico.setIcon(VaadinIcons.USER);			
+			txtTipoServico.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("tipoServico");
+			
+			TextField txtBemPatrimonial = new TextField("bemPatrimonial");
+			txtBemPatrimonial.setWidth("80%");
+			txtBemPatrimonial.setIcon(VaadinIcons.USER);			
+			txtBemPatrimonial.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("bemPatrimonial");
 					
-			gridLayout.addComponent(txtLogin, 1, 0, 1, 0);
-			gridLayout.setComponentAlignment(txtLogin, Alignment.TOP_LEFT);
+			TextField txtNumPatrimonio = new TextField("numPatrimonio");
+			txtNumPatrimonio.setWidth("80%");
+			txtNumPatrimonio.setIcon(VaadinIcons.USER);			
+			txtNumPatrimonio.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtNumPatrimonio).bind("numPatrimonio");
+			
+			TextField txtDescServico = new TextField("descricaoServico");
+			txtDescServico.setWidth("80%");
+			txtDescServico.setIcon(VaadinIcons.USER);			
+			txtDescServico.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("descricaoServico");
+			
+			TextField txtGrauDeNecessidade = new TextField("grauNecessidade");
+			txtGrauDeNecessidade.setWidth("80%");
+			txtGrauDeNecessidade.setIcon(VaadinIcons.USER);			
+			txtGrauDeNecessidade.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("grauNecessidade");
+			
+			TextField txtRechamado = new TextField("rechamado");
+			txtRechamado.setWidth("80%");
+			txtRechamado.setIcon(VaadinIcons.USER);			
+			txtRechamado.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("rechamado");
+			
+			TextField txtOsAnterior = new TextField("osAnterior");
+			txtOsAnterior.setWidth("80%");
+			txtOsAnterior.setIcon(VaadinIcons.USER);			
+			txtOsAnterior.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("osAnterior");
+			
+			TextField txtStatus = new TextField("status");
+			txtStatus.setWidth("80%");
+			txtStatus.setIcon(VaadinIcons.USER);			
+			txtStatus.setRequiredIndicatorVisible(true);			
+			osBinder.forField(txtLocal).bind("status");
 
 			
-			//TextField para Senha
-			PasswordField txtSenha = new PasswordField("Senha");
-			txtSenha.setWidth("80%");
-			txtSenha.setIcon(VaadinIcons.CODE);
-			
-			txtLogin.setRequiredIndicatorVisible(true);
-			pessBinder.forField(txtSenha).bind("senha");
-			
-			gridLayout.addComponent(txtSenha, 1, 1, 1, 1);
 
 			Button btnSalvar = new Button("Salvar");
 			btnSalvar.addClickListener((e)->{
 				try {
-					pessBinder.writeBean(this.odemDeServico);
+					osBinder.writeBean(this.odemDeServico);
 					Session session = HibernateUtil.getSessionFactory().openSession();
 					this.pDAO.beginTransaction();
 					this.pDAO.inserir(this.odemDeServico);
@@ -103,12 +152,12 @@ public class OrdemDeServicoFormViewForInsertion extends FormLayout implements Vi
 				}
 			});
 	                
-			gridLayout.addComponent(btnSalvar, 1, 2, 1, 2);
+			//gridLayout.addComponent(btnSalvar, 1, 2, 1, 2);
 
 //			JsLabel fzlJsLabel = new JsLabel("asdfasdfafds");
 //			gridLayout.addComponent(fzlJsLabel);
 
-			this.addComponent(gridLayout);
+			this.addComponent(vertLayout);
 
 		}
 

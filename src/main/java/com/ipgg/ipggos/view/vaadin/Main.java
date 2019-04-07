@@ -8,8 +8,13 @@ import com.ipgg.ipggos.view.crudview.OrdemServicoFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.menu.MenuPrincipal;
@@ -20,8 +25,10 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * @author Clederson Cruz
@@ -31,6 +38,7 @@ import com.vaadin.ui.VerticalLayout;
  * através do controle de ordem de serviço.
  */
 @Theme("meutema")
+//@Theme("BlueprintCustom")
 public class Main extends UI {
 
 	public static String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath(); 
@@ -40,21 +48,26 @@ public class Main extends UI {
     protected void init(VaadinRequest vaadinRequest) {    	
     	    	
     	VerticalLayout mainLayout = new VerticalLayout();
-    	VerticalLayout menuLayout = new VerticalLayout();
+    	mainLayout.setCaption("MainLayoutCaption");
+    	mainLayout.setSizeFull();
+    	mainLayout.setStyleName("mainLayout");
+    	    	
     	VerticalLayout bodyLayout = new VerticalLayout();
+    	bodyLayout.setCaption("BodyLayoutCaption");
+    	bodyLayout.setWidth("100%");
     	
-    	menuLayout.addComponent(MenuPrincipal.getInstance());
-    	mainLayout.addComponent(menuLayout);
-    	mainLayout.addComponent(bodyLayout);
     	
-    	setContent(mainLayout);
+    	mainLayout.addComponent(MenuPrincipal.getInstance());
+    	mainLayout.addComponent(bodyLayout);    	
     	
+    	
+    	mainLayout.setExpandRatio(bodyLayout, 1.0f);
+    	setContent(mainLayout);    	
     	configNavigation(bodyLayout);
     	
     	getPage().setTitle("IPPG OS");    	
     	UI.getCurrent().setLocale(new Locale("pt-BR")); 
-    	setSizeFull();    	
-
+    	setSizeFull();
     }
 
 	private void configNavigation(VerticalLayout bodyLayout) {
@@ -71,14 +84,22 @@ public class Main extends UI {
 //		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);
 //		navigator.addView(TelaSolicitacao.VIEW_NAME, telaSolicitacao);
 //		navigator.addView(TelaAvaliacao.VIEW_NAME, telaAvaliacao);
-//		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, ordemServicoFormViewForUpdate);
+//		
 //		navigator.addView(TelaFeedBack.VIEW_NAME, telaFeedBack);
-//		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);        
-//		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
-//		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
-//		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
+//		navigator.addView(TelaListaOS.VIEW_NAME, telaListaOS);
+
 		navigator.addView("", new SistemaUsuarioListView());
+		
+		navigator.addView(OrdemDeServicoListView.VIEW_NAME, new OrdemDeServicoListView());
+		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
+		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
+		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
+						
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
+		navigator.addView(SistemaUsuarioFormViewForInsertion.VIEW_NAME, new SistemaUsuarioFormViewForInsertion());
+		navigator.addView(SistemaUsuarioFormViewForUpdate.VIEW_NAME, new SistemaUsuarioFormViewForUpdate());
+		navigator.addView(SistemaUsuarioListViewForDeletion.VIEW_NAME, new SistemaUsuarioListViewForDeletion());
+		
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(null, null));
 		navigator.addView(PessoaListViewForDeletion.VIEW_NAME, new PessoaListViewForDeletion());
 		navigator.addView(PessoaListView.VIEW_NAME, new PessoaListView());

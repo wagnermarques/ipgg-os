@@ -4,9 +4,12 @@ package com.ipgg.ipggos.view.vaadin.menu;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
+import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.Main;
@@ -35,21 +38,24 @@ public class MenuPrincipal {
         //Items do menu CADASTRO
         //Sistema Usuario
         MenuItem mnuItem_UsuarioDoSistema_INSERIR = barItem_UsuarioDoSistema.addItem("Inserir (funciona)",null,null);
-        mnuItem_UsuarioDoSistema_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoFormViewForInsertion.VIEW_NAME));
+        mnuItem_UsuarioDoSistema_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(SistemaUsuarioFormViewForInsertion.VIEW_NAME));
         
         MenuItem mnuItem_UsuarioDoSistema_ALTERAR = barItem_UsuarioDoSistema.addItem("Alterar (em desenvolvimento)",null,null);
-        mnuItem_UsuarioDoSistema_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForUpdate.VIEW_NAME));
+        mnuItem_UsuarioDoSistema_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(SistemaUsuarioFormViewForUpdate.VIEW_NAME));
         
         MenuItem mnuItem_UsuarioDoSistema_EXCLUIR = barItem_UsuarioDoSistema.addItem("Excluir (funciona)",null,null);
-        mnuItem_UsuarioDoSistema_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForDeletion.VIEW_NAME));
+        mnuItem_UsuarioDoSistema_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(SistemaUsuarioListViewForDeletion.VIEW_NAME));
         
         MenuItem mnuItem_UsuarioDoSistema_PESQUISAR = barItem_UsuarioDoSistema.addItem("Pesquisar  (funciona)",null,null);
         mnuItem_UsuarioDoSistema_PESQUISAR.setCommand((selectedItem) -> Main.navigator.navigateTo(SistemaUsuarioListView.VIEW_NAME));
         
+        
         //Pessoa
         MenuItem mnuItem_Pessoa_INSERIR = barItem_Pessoa.addItem("Inserir  (funciona)",null,null);
         mnuItem_Pessoa_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(PessoaFormInserirView.VIEW_NAME));        
+        
         MenuItem mnuItem_Pessoa_ALTERAR = barItem_Pessoa.addItem("Alterar  (em desenvolvimento)",null,null);
+        
         MenuItem mnuItem_Pessoa_EXCLUIR = barItem_Pessoa.addItem("Excluir (funciona)",null,null);
         mnuItem_Pessoa_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(PessoaListViewForDeletion.VIEW_NAME));
         
