@@ -8,6 +8,7 @@ import com.ipgg.ipggos.view.crudview.OrdemServicoFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.PessoaListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
@@ -104,6 +105,7 @@ public class Main extends UI {
 		navigator.addView(SistemaUsuarioListViewForDeletion.VIEW_NAME, new SistemaUsuarioListViewForDeletion());
 		
 		navigator.addView(PessoaFormInserirView.VIEW_NAME, new PessoaFormInserirView(null, null));
+		navigator.addView(PessoaListViewForUpdate.VIEW_NAME, new PessoaListViewForUpdate());
 		navigator.addView(PessoaListViewForDeletion.VIEW_NAME, new PessoaListViewForDeletion());
 		navigator.addView(PessoaListView.VIEW_NAME, new PessoaListView());
 	}

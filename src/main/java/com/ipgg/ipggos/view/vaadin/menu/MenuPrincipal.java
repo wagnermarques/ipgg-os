@@ -4,6 +4,7 @@ package com.ipgg.ipggos.view.vaadin.menu;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.PessoaListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
@@ -56,6 +57,7 @@ public class MenuPrincipal {
         mnuItem_Pessoa_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(PessoaFormInserirView.VIEW_NAME));        
         
         MenuItem mnuItem_Pessoa_ALTERAR = barItem_Pessoa.addItem("Alterar  (em desenvolvimento)",null,null);
+        mnuItem_Pessoa_ALTERAR.setCommand((selectedItem) -> Main.navigator.navigateTo(PessoaListViewForUpdate.VIEW_NAME));
         
         MenuItem mnuItem_Pessoa_EXCLUIR = barItem_Pessoa.addItem("Excluir (funciona)",null,null);
         mnuItem_Pessoa_EXCLUIR.setCommand((selecteditem) -> Main.navigator.navigateTo(PessoaListViewForDeletion.VIEW_NAME));
