@@ -25,6 +25,7 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -48,6 +49,7 @@ public class OrdemDeServicoFormViewForInsertion extends FormLayout implements Vi
 			
 			
 			VerticalLayout vertLayout = new VerticalLayout();
+			Panel panel = new Panel();
 
 			vertLayout.setWidth("80%");
 			vertLayout.setHeight("70%");
@@ -57,82 +59,93 @@ public class OrdemDeServicoFormViewForInsertion extends FormLayout implements Vi
 			txtSolicitante.setIcon(VaadinIcons.USER);			
 			txtSolicitante.setRequiredIndicatorVisible(true);		
 			osBinder.forField(txtSolicitante).bind("solicitante");
-			//gridLayout.addComponent(txtSolicitante);
+			vertLayout.addComponent(txtSolicitante);
 			
 			TextField txtGerencia = new TextField("gerencia");
 			txtGerencia.setWidth("80%");
 			txtGerencia.setIcon(VaadinIcons.USER);			
 			txtGerencia.setRequiredIndicatorVisible(true);		
 			osBinder.forField(txtGerencia).bind("gerencia");
-
+			vertLayout.addComponent(txtGerencia);
+			
 			TextField txtDiretoria = new TextField("diretoria");
 			txtDiretoria.setWidth("80%");
 			txtDiretoria.setIcon(VaadinIcons.USER);			
 			txtDiretoria.setRequiredIndicatorVisible(true);		
 			osBinder.forField(txtGerencia).bind("diretoria");
+			vertLayout.addComponent(txtDiretoria);
 			
 			TextField txtLocal = new TextField("local");
 			txtLocal.setWidth("80%");
 			txtLocal.setIcon(VaadinIcons.USER);			
 			txtLocal.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("local");
+			vertLayout.addComponent(txtLocal);
 			
 			TextField txtServico = new TextField("servico");
 			txtServico.setWidth("80%");
 			txtServico.setIcon(VaadinIcons.USER);			
 			txtServico.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("servico");
+			vertLayout.addComponent(txtServico);
 			
 			TextField txtTipoServico = new TextField("tipoServico");
 			txtTipoServico.setWidth("80%");
 			txtTipoServico.setIcon(VaadinIcons.USER);			
 			txtTipoServico.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("tipoServico");
+			vertLayout.addComponent(txtTipoServico);
 			
 			TextField txtBemPatrimonial = new TextField("bemPatrimonial");
 			txtBemPatrimonial.setWidth("80%");
 			txtBemPatrimonial.setIcon(VaadinIcons.USER);			
 			txtBemPatrimonial.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("bemPatrimonial");
+			vertLayout.addComponent(txtBemPatrimonial);
 					
 			TextField txtNumPatrimonio = new TextField("numPatrimonio");
 			txtNumPatrimonio.setWidth("80%");
 			txtNumPatrimonio.setIcon(VaadinIcons.USER);			
 			txtNumPatrimonio.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtNumPatrimonio).bind("numPatrimonio");
+			vertLayout.addComponent(txtNumPatrimonio);
 			
 			TextField txtDescServico = new TextField("descricaoServico");
 			txtDescServico.setWidth("80%");
 			txtDescServico.setIcon(VaadinIcons.USER);			
 			txtDescServico.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("descricaoServico");
+			vertLayout.addComponent(txtDescServico);
 			
 			TextField txtGrauDeNecessidade = new TextField("grauNecessidade");
 			txtGrauDeNecessidade.setWidth("80%");
 			txtGrauDeNecessidade.setIcon(VaadinIcons.USER);			
 			txtGrauDeNecessidade.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("grauNecessidade");
+			vertLayout.addComponent(txtGrauDeNecessidade);
 			
 			TextField txtRechamado = new TextField("rechamado");
 			txtRechamado.setWidth("80%");
 			txtRechamado.setIcon(VaadinIcons.USER);			
 			txtRechamado.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("rechamado");
+			vertLayout.addComponent(txtRechamado);
 			
 			TextField txtOsAnterior = new TextField("osAnterior");
 			txtOsAnterior.setWidth("80%");
 			txtOsAnterior.setIcon(VaadinIcons.USER);			
 			txtOsAnterior.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("osAnterior");
+			vertLayout.addComponent(txtOsAnterior);
 			
 			TextField txtStatus = new TextField("status");
 			txtStatus.setWidth("80%");
 			txtStatus.setIcon(VaadinIcons.USER);			
 			txtStatus.setRequiredIndicatorVisible(true);			
 			osBinder.forField(txtLocal).bind("status");
-
+			vertLayout.addComponent(txtStatus);
 			
-
+			
 			Button btnSalvar = new Button("Salvar");
 			btnSalvar.addClickListener((e)->{
 				try {

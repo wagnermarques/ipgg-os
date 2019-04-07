@@ -15371,10 +15371,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .meutema .mainLayout {
 	border: 1px solid black;
-	background-color: blue;
+	background-color: white;
+	overflow: auto;
 }
 
 .meutema .bodyLayout {
 	border: 1px solid blue;
 	background-color: #00FF00;
+	overflow: auto;
 }

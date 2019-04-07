@@ -35,9 +35,11 @@ public class OrdemDeServicoListViewForUpdate extends VerticalLayout implements V
 	private static final long serialVersionUID = 1L;
 
 	public static String VIEW_NAME = "ordem_servico_list_view_for_Update";
+	public static String VIEW_CAPTION = "Alterar Ordem de Servico: (OrdemDeServicoListViewForUpdate) ";
 
 	public OrdemDeServicoListViewForUpdate() {
 		logger.info(" ### public OrdemDeServicoListViewForUpdate() {... ");
+		setCaption(OrdemDeServicoListViewForUpdate.VIEW_CAPTION);
 	}
 
 	
