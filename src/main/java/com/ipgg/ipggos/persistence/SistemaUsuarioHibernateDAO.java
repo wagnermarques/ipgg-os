@@ -45,8 +45,8 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 	 * Util tambe pra logar um um usuario, ja que term que ter somente um usuario e senha
 	 * e nao mais de um.
 	 */
-	public int temQuantos(String login, String senha) {
-		logger.info("public int temQuantos(String login, String senha) {...");
+	public SistemaUsuario LoginQuery(String login, String senha) {
+		logger.info("public SistemaUsuario LoginQuery(String login, String senha) {...");
 		CriteriaBuilder cB = this.session.getCriteriaBuilder();
 		CriteriaQuery<SistemaUsuario> qry = cB.createQuery(SistemaUsuario.class);		
 		Root<SistemaUsuario> from = qry.from(SistemaUsuario.class);
@@ -57,14 +57,17 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 				));		
 		Query<SistemaUsuario> createdQuery = session.createQuery(qry);
 		List<SistemaUsuario> resultList = createdQuery.getResultList();
-		return resultList.size();		
+		if (resultList.size() == 1) {
+			return resultList.get(0);
+		}		
+		return null;		
 	}
 	
 	/**
 	 * Cria usuario Admin com senha admin123
 	 * e
 	 * Cria usuario Guest com senha guest123
-	 */
+	 
 	public void createDefaultUsers() {		
 		
 		int qtdeDeUsuariosAdmin = this.temQuantos("admin", "admin123");
@@ -92,11 +95,12 @@ public class SistemaUsuarioHibernateDAO extends GenericHibernateDAOImp<SistemaUs
 
 	}
 	
+	
 	public void excluiTodos() {				
 		CriteriaBuilder cB = this.session.getCriteriaBuilder();
 		CriteriaDelete<SistemaUsuario> qryDelete = cB.createCriteriaDelete(SistemaUsuario.class);
 		Root<SistemaUsuario> deleteFrom = qryDelete.from(SistemaUsuario.class);
 		this.session.createQuery(qryDelete).executeUpdate();
 	}
-
+*/
 }

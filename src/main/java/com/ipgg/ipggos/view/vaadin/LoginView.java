@@ -35,12 +35,12 @@ public class LoginView extends VerticalLayout implements View {
 		HorizontalLayout buttonsHorizontalLayout = new HorizontalLayout();
 		
 		FormLayout loginFormLayout = new FormLayout();
-		final TextField txtUserName = new TextField("Usuario");
-		final TextField txtUserSenha = new PasswordField("Password");
+		final TextField txtUserName = new TextField("Usuario:");
+		final TextField txtUserSenha = new PasswordField("Password:");
 		
 		Button buttonOK = new Button("OK", new Button.ClickListener() {			
 			@Override
-			public void buttonClick(ClickEvent event) {				
+			public void buttonClick(ClickEvent event) {												
 				String txtUserNameToBeLogged = txtUserName.getValue();
 				String txtPasswordToBeLogged = txtUserSenha.getValue();
 				logger.info("txtUserNameToBeLogged = "+txtUserNameToBeLogged);
@@ -53,11 +53,15 @@ public class LoginView extends VerticalLayout implements View {
 				LoginService loginService = new LoginService();
 				
 				try {
+					
 					SistemaUsuario authenticatedUser = loginService.execute(mapForLoginService);
+					
 					if( authenticatedUser == null ) {
-						new Notification("Falha no login!!!");
+						logger.info(" ### Falha no login!!!");
 					}else {
-						Main.setValueInHttpSession("userLoggedIn", authenticatedUser);
+						logger.info(" ### Usuario identificado, agora atualizando app e atualizando state dos componentes...");
+						Main.setValueInHttpSession("userLoggedIn", authenticatedUser);	
+						ViewComponentsStateController.updateComponentsLoginEvent(authenticatedUser);
 						Main.navigator.navigateTo(TelaListaOS.VIEW_NAME);
 					}					
 				} catch (Exception e) {

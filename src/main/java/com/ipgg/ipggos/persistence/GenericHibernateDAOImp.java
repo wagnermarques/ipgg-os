@@ -60,4 +60,6 @@ public class GenericHibernateDAOImp<T,Pk extends Long> extends AbstrGenericHiber
 	public T getById(Long pk) {		
 		return (T) this.session.byId(this.entityClass).load(pk);
 	}
+	
+	
 }

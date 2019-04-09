@@ -22,7 +22,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaSolicitacao extends FormLayout implements View {
-	protected static final String VIEW_NAME = "tela_solicitacao";
+	public static final String VIEW_NAME = "tela_solicitacao";
 
 	//private TextField nos;
 	private TextField solicitante;
