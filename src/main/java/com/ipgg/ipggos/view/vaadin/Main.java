@@ -87,12 +87,11 @@ public class Main extends UI {
     	Label lbUserName = new Label("Usuario Logado = " + Main.getUserLoggedIn() == null ? Main.getUserLoggedIn().getLogin() : "?");
     	Button btnSair = new Button("Sair");
     	btnSair.addClickListener(e -> {
-    		new LogoutService().execute();
-    		ViewComponentsStateController.updateComponentsLogoutEvent();
+    		new LogoutService().execute();    		
     	});
     	horizLayout4AppUserIdentification.addComponent(lbUserName);
     	horizLayout4AppUserIdentification.addComponent(btnSair);
-    	ViewComponentsStateController.registerButton(btnSair);
+    	btnSair.setEnabled(false);
     	
     	//MONTAGEM DA INTERFACE DO USUARIO
     	//primeiro colocando o menu e o layout de ident do usuario no horizLayout

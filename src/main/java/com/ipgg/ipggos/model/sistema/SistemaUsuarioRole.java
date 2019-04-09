@@ -16,6 +16,12 @@ public class SistemaUsuarioRole {
 	private Long id;
 	private String roleName;
 	
+	public SistemaUsuarioRole(String role) {
+		this.roleName = role;
+	}
+	public SistemaUsuarioRole() {
+	
+	}
 	public String getRoleName() {
 		return roleName;
 	}
@@ -27,8 +33,5 @@ public class SistemaUsuarioRole {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	
-	
+	}	
 }

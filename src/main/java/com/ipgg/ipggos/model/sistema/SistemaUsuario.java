@@ -44,7 +44,13 @@ public class SistemaUsuario{
 	}
 
 	public boolean userInRole(String role) {
-		return roles.contains(role);
+		System.out.println(" --- public boolean userInRole(String role) {....");
+		System.out.println(this.roles.toArray().toString());
+		for(SistemaUsuarioRole r : this.roles) {
+			String roleName = r.getRoleName();
+			if(roleName.equals(role)) return true;
+		}
+		return false;
 	}
 		
 	//GETTERS AND SETTERS
@@ -80,16 +86,16 @@ public class SistemaUsuario{
 		this.roles = roles;
 	}
 
-	public static void insertAdminUser() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		SistemaUsuarioHibernateDAO uDao = new SistemaUsuarioHibernateDAO(session, SistemaUsuario.class, Long.class);
-		SistemaUsuario adminUser = new SistemaUsuario();
-		adminUser.setLogin("admin");
-		adminUser.setSenha("admin123");
-		SistemaUsuarioRole role = new SistemaUsuarioRole();
-		role.setRoleName("admin");
-		adminUser.getRoles().add(role);
-		uDao.inserir(adminUser);
-	}
+//	public static void insertAdminUser() {
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		SistemaUsuarioHibernateDAO uDao = new SistemaUsuarioHibernateDAO(session, SistemaUsuario.class, Long.class);
+//		SistemaUsuario adminUser = new SistemaUsuario();
+//		adminUser.setLogin("admin");
+//		adminUser.setSenha("admin123");
+//		SistemaUsuarioRole role = new SistemaUsuarioRole();
+//		role.setRoleName("admin");
+//		adminUser.getRoles().add(role);
+//		uDao.inserir(adminUser);
+//	}
 	
 }

@@ -1,0 +1,16 @@
+@import "../valo/valo.scss";
+
+@mixin customtheme {
+
+	@include valo;
+	
+	.v-button {
+	   color: red;
+	 }
+	 
+	 .v-vertical > v-spacing {
+	 	height: 30px;
+	 	color:red;
+	 	background-color:green;
+	 }
+}
