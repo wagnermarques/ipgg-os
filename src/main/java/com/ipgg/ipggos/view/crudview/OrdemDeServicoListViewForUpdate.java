@@ -52,8 +52,14 @@ public class OrdemDeServicoListViewForUpdate extends VerticalLayout implements V
 		Session session = HibernateUtil.getSessionFactory().openSession();		
 		this.osDAO = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);		
 		this.listOrdemServico = this.osDAO.ListarTodos();
-		
+		for(OrdemServico os : this.listOrdemServico) {
+			System.out.println(os);
+		}
 		this.grid = new Grid<>();
+		this.grid.setWidth("100%");
+		this.grid.addItemClickListener(e -> {
+			Main.navigator.navigateTo(OrdemServicoFormViewForUpdate.VIEW_NAME+"/"+e.getItem().getId());
+		});
 		this.grid.setItems(this.listOrdemServico);
 		this.grid.addColumn(OrdemServico::getId).setCaption("id");
 		this.grid.addColumn(OrdemServico::getSolicitante).setCaption("Solicitante");
@@ -79,7 +85,7 @@ public class OrdemDeServicoListViewForUpdate extends VerticalLayout implements V
 	private Button buildUpdateButton(OrdemServico os) {
 		Button button = new Button(VaadinIcons.EDIT);
 		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		button.addClickListener(e -> Main.navigator.navigateTo(OrdemDeServicoFormViewForUpdate.VIEW_NAME+"/"+os.getId()));
+		button.addClickListener(e -> Main.navigator.navigateTo(OrdemServicoFormViewForUpdate.VIEW_NAME+"/"+os.getId()));
 		return button;
 	}
 

@@ -8,6 +8,7 @@ import org.jboss.logging.Logger;
 import com.ipgg.ipggos.model.sistema.SistemaUsuario;
 import com.ipgg.ipggos.service.security.LoginService;
 import com.vaadin.navigator.View;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.FormLayout;
@@ -57,7 +58,10 @@ public class LoginView extends VerticalLayout implements View {
 					SistemaUsuario authenticatedUser = loginService.execute(mapForLoginService);
 					
 					if( authenticatedUser == null ) {
-						logger.info(" ### Falha no login!!!");
+						new Notification("Atencao!!!",
+							    "Usuario ou senha incorretos. <i>Contactar NSI 20304008</i>",
+							    Notification.Type.WARNING_MESSAGE, true)
+							    .show(Page.getCurrent());
 					}else {
 						logger.info(" ### Usuario identificado, agora atualizando app e atualizando state dos componentes...");
 						Main.setValueInHttpSession("userLoggedIn", authenticatedUser);	

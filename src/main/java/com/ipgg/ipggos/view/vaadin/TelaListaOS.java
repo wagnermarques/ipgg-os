@@ -49,7 +49,7 @@ public class TelaListaOS extends VerticalLayout implements View {
 		grid.setCaption("Ordem de Chamado");
 		grid.setWidth("80%");
 		grid.setSizeFull();
-		grid.addColumn(OrdemServico::getId).setCaption("Nº O.S.");
+		grid.addColumn(OrdemServico::getId).setCaption("Nº O.S.").setWidth(60);
 		grid.addColumn(OrdemServico::getSolicitante).setCaption("Solicitante");
 		grid.addColumn(OrdemServico::getDiretoria).setCaption("Diretoria");
 		grid.addColumn(OrdemServico::getTipoServico).setCaption("Tipo Serviço");

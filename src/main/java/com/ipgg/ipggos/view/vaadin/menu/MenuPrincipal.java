@@ -1,25 +1,23 @@
 
 package com.ipgg.ipggos.view.vaadin.menu;
 
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
+import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForUpdate;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForInsertion;
-import com.ipgg.ipggos.view.crudview.SistemaUsuarioFormViewForUpdate;
-import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
-import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForUpdate;
-import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
-import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.Main;
+import com.ipgg.ipggos.view.vaadin.TelaListaOS;
 import com.ipgg.ipggos.view.vaadin.TelaSolicitacao;
 import com.ipgg.ipggos.view.vaadin.ViewComponentsStateController;
 //import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar;
-
 import com.vaadin.ui.MenuBar.MenuItem;
 
 public class MenuPrincipal {
@@ -38,6 +36,7 @@ public class MenuPrincipal {
         ViewComponentsStateController.registerMenuItem(barItem_Ajuda);
         MenuItem barItem_Sobre = barItem_Ajuda.addItem("Sobre", null, null);
         ViewComponentsStateController.registerMenuItem(barItem_Sobre);
+        
         
         //Itens (Nivel 1) da barra de menus
         MenuItem barItem_Crud_UsuarioDoSistema = mnuItemcadastro.addItem("Administrar Usuarios do Sistema",null,null);
@@ -82,7 +81,7 @@ public class MenuPrincipal {
 
         //Items do menu ORDEM DE SERVICO
         MenuItem mnuItem_OS_INSERIR = barItem_Crud_OrdemDeServico.addItem("Inserir (Testar)",null,null);
-        mnuItem_OS_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(OrdemDeServicoFormViewForInsertion.VIEW_NAME));
+        mnuItem_OS_INSERIR.setCommand((selectedItem) -> Main.navigator.navigateTo(TelaSolicitacao.VIEW_NAME));
         
         MenuItem mnuItem_OS_ALTERAR = barItem_Crud_OrdemDeServico.addItem("Alterar (em desenvolvimento)",null,null);
         mnuItem_OS_ALTERAR.setCommand((selecteditem) -> Main.navigator.navigateTo(OrdemDeServicoListViewForUpdate.VIEW_NAME));
@@ -95,7 +94,10 @@ public class MenuPrincipal {
         
         
         //### Itens do menu Ordem de Servico
-        MenuItem mnuItem_AbrirOrdemDeServico = mnuOrdemDeServicos.addItem("Abrir Ordem de Servico",null,null);
+        MenuItem mnuItem_minhasOs = mnuOrdemDeServicos.addItem("Minhas Ordens de Serviços",null,null);
+        mnuItem_minhasOs.setCommand((selectedItem) -> Main.navigator.navigateTo(TelaListaOS.VIEW_NAME));
+
+        MenuItem mnuItem_AbrirOrdemDeServico = mnuOrdemDeServicos.addItem("Abrir Nova Ordem de Servico",null,null);
         mnuItem_AbrirOrdemDeServico.setCommand((selectedItem) -> Main.navigator.navigateTo(TelaSolicitacao.VIEW_NAME));
         
         return barmenu;

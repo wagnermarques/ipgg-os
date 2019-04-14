@@ -6,10 +6,10 @@ import javax.servlet.annotation.WebServlet;
 
 import com.ipgg.ipggos.model.sistema.SistemaUsuario;
 import com.ipgg.ipggos.service.security.LogoutService;
-import com.ipgg.ipggos.view.crudview.OrdemDeServicoFormViewForInsertion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListView;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.OrdemDeServicoListViewForUpdate;
+import com.ipgg.ipggos.view.crudview.OrdemServicoFormViewForUpdate;
 import com.ipgg.ipggos.view.crudview.PessoaFormInserirView;
 import com.ipgg.ipggos.view.crudview.PessoaListView;
 import com.ipgg.ipggos.view.crudview.PessoaListViewForDeletion;
@@ -71,14 +71,15 @@ public class Main extends UI {
     	VerticalLayout bodyLayout = new VerticalLayout();
     	
     	//Configurando layout mestre
-    	mainLayout.setCaption("MainLayoutCaption");
+    	mainLayout.setCaption("==> ==> ==> Login para teste: usuario 'admin' senha 'admin123'");
     	mainLayout.setSizeFull();
     	mainLayout.setStyleName("mainLayout");
     	//mainLayout.setCaption(Main.getUserLoggedIn() != null ? Main.getUserLoggedIn().getLogin() : "Nenhum Usuario Logado");
     	mainLayout.setCaption("Main.getUserLoggedIn() != null ? Main.getUserLoggedIn().getLogin() : Nenhum Usuario Logado Main.getUserLoggedIn() != null ? Main.getUserLoggedIn().getLogin() : Nenhum Usuario Logado Main.getUserLoggedIn() != null ? Main.getUserLoggedIn().getLogin() : Nenhum Usuario Logado ");
     	
     	//configurando o layout de navegacao de telas
-    	bodyLayout.setCaption("BodyLayoutCaption");
+    	bodyLayout.setCaption("3"
+    			+ "==> ==> ==> Login para teste: usuario 'admin' senha 'admin123'");
     	bodyLayout.setWidth("100%");
     	bodyLayout.setStyleName("bodyLayout");
     	    	    	    	
@@ -133,13 +134,17 @@ public class Main extends UI {
 		navigator.addView(TelaListaOS.VIEW_NAME, new TelaListaOS());
 
 		navigator.addView("", new LoginView());
+		
 		navigator.addView(LoginView.LOGIN_VIEW_NAME, new LoginView());
 		
 		navigator.addView(TelaSolicitacao.VIEW_NAME	, new TelaSolicitacao());
+		navigator.addView(TelaListaOS.VIEW_NAME	, new TelaListaOS());
 		
 		navigator.addView(OrdemDeServicoListView.VIEW_NAME, new OrdemDeServicoListView());
-		navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
+		//navigator.addView(OrdemDeServicoFormViewForInsertion.VIEW_NAME, new OrdemDeServicoFormViewForInsertion());
 		navigator.addView(OrdemDeServicoListViewForUpdate.VIEW_NAME, new OrdemDeServicoListViewForUpdate());
+		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, new OrdemServicoFormViewForUpdate());
+		
 		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
 						
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());

@@ -1,5 +1,7 @@
 package com.ipgg.ipggos.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +27,21 @@ public class OrdemServico {
 	private Boolean rechamado;
 	private Long osAnterior;
 	private String status;
+	private LocalDateTime momAbertura;
 	
+	
+
+	public LocalDateTime getMomAbertura() {
+		return momAbertura;
+	}
+
+	public void setMomAbertura(LocalDateTime momAbertura) {
+		this.momAbertura = momAbertura;
+	}
+
+	public void setNumPatrimonio(String numPatrimonio) {
+		this.numPatrimonio = numPatrimonio;
+	}
 
 	public Long getId() {
 		return Id;

@@ -1,8 +1,7 @@
 package com.ipgg.ipggos.view.vaadin;
 
-import java.util.ArrayList;
-
 import org.hibernate.Session;
+
 import org.vaadin.ui.NumberField;
 
 import com.ipgg.ipggos.model.OrdemServico;
@@ -14,10 +13,12 @@ import com.vaadin.data.ValidationException;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewBeforeLeaveEvent;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
@@ -44,11 +45,12 @@ public class TelaSolicitacao extends FormLayout implements View {
 
 	Binder<OrdemServico> binder = new Binder<OrdemServico>(OrdemServico.class);
 
-	private GenericHibernateDAOImp dao;
+	private GenericHibernateDAOImp<OrdemServico, Long> dao;
 		
 	public TelaSolicitacao() {		
 		
-		this.ordemServico = new OrdemServico();	
+		this.ordemServico = new OrdemServico();
+		this.ordemServico.setStatus("pendente");//s os he criada com o status de pendente
 		this.binder.setBean(ordemServico);	
 	
 //		nos = new NumberField("Nº O.S.");
@@ -57,6 +59,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 //		nos.setDescription("Nº da Ordem de Serviço");
 //		nos.setWidth("80%");
 		//binder.forField(nos).bind("id");
+		
 		
 		solicitante = new TextField("Solicitante Autorizado");
 		binder.forField(solicitante).bind("solicitante");
@@ -72,6 +75,16 @@ public class TelaSolicitacao extends FormLayout implements View {
 		
 		servico = new ComboBox<>("Serviço Solicitado");
 		binder.forField(servico).bind("servico");
+		servico.setDescription("Selecione o serviço desejado");
+		String servicoItens[] = {
+			"Manutenção Corretiva", "Manutenção Preventiva",
+			"Instalação", "Calibração"
+		};
+		
+		servico.setEmptySelectionAllowed(false);
+		servico.setTextInputAllowed(false);
+		servico.setItems(servicoItens);
+		servico.setWidth("80%");
 		
 		tipoServico = new ComboBox<>("Tipo de Serviço");
 		binder.forField(tipoServico).bind("tipoServico");
@@ -137,15 +150,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		local.setDescription("Locais disponíveis");
 		local.setWidth("80%");
 
-		servico.setDescription("Selecione o serviço desejado");
-		String servicoItens[] = {
-			"Manutenção Corretiva", "Manutenção Preventiva",
-			"Instalação", "Calibração"
-		};
-		servico.setEmptySelectionAllowed(false);
-		servico.setTextInputAllowed(false);
-		servico.setItems(servicoItens);
-		servico.setWidth("80%");
+	
 
 		tipoServico.setDescription("Selecione o tipo de serviço");
 		String tipoServicoItens[] = {
@@ -153,6 +158,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 			"Hidráulica", "Marcenaria", "Mobiliário/Equipamentos",
 			"Pintura", "Serralheria", "Outros"
 		};
+		
 		tipoServico.setEmptySelectionAllowed(false);
 		tipoServico.setTextInputAllowed(false);
 		tipoServico.setItems(tipoServicoItens);
@@ -203,26 +209,21 @@ public class TelaSolicitacao extends FormLayout implements View {
 			
 			try {
 				this.binder.writeBean(this.ordemServico);
-				System.out.println("this.ordemServico.getId() ->" + this.ordemServico.getId());
-				System.out.println("this.ordemServico.getSolicitante() ->" + this.ordemServico.getSolicitante());
-				System.out.println("this.ordemServico.getGerencia()-> "+this.ordemServico.getGerencia());
-				System.out.println("this.ordemServico.getDiretoria() ->" +this.ordemServico.getDiretoria());
-				System.out.println("this.ordemServico.getTipoServico() ->" +this.ordemServico.getTipoServico());
-				System.out.println("this.ordemServico.getBemPatrimonial() ->" +this.ordemServico.getBemPatrimonial());
-				System.out.println("this.ordemServico.getnPatrimonio() ->" +this.ordemServico.getNumPatrimonio());
-				System.out.println("this.ordemServico.getDescricaoServico() ->" +this.ordemServico.getDescricaoServico());
-				System.out.println("this.ordemServico.getGrauNecessidade() ->" +this.ordemServico.getGrauNecessidade());
-				System.out.println("this.ordemServico.getRechamado() ->" +this.ordemServico.getRechamado());
-				System.out.println("this.ordemServico.getOsAnterior() ->" +this.ordemServico.getOsAnterior());
-				System.out.println("this.ordemServico.getStatus() ->" +this.ordemServico.getStatus());
-			} catch (ValidationException e1) {
+				this.dao.beginTransaction();
+				this.dao.inserir(this.ordemServico);
+				this.dao.commit();
+				
+				new Notification("Operacao Concluida com Sucesso",
+					    "Ordem de Servico Salva",
+					    Notification.Type.HUMANIZED_MESSAGE, true)
+					    .show(Page.getCurrent());
+				
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 	
-			this.dao.beginTransaction();
-			this.dao.inserir(this.ordemServico);
-			this.dao.commit();			
+						
 		});
 		cancelar.setDescription("Cancelar O.S.");
 		cancelar.addListener((e) -> Main.navigator.navigateTo(TelaListaOS.VIEW_NAME));
