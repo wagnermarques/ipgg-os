@@ -55,7 +55,7 @@ public class TelaListaOS extends VerticalLayout implements View {
 		grid.addColumn(OrdemServico::getTipoServico).setCaption("Tipo Serviço");
 		grid.addColumn(OrdemServico::getGrauNecessidade).setCaption("Grau Necessidade");
 		grid.addColumn(OrdemServico::getStatus).setCaption("Status");
-		grid.addComponentColumn(this::buildUpdateButton).setCaption("Ações");
+		grid.addComponentColumn(this::buildUpdateButton).setCaption("Mensagens");
 		//tabela.addColumn("").setCaption("Ações");
 		
 		HorizontalLayout header = new HorizontalLayout();
@@ -71,10 +71,10 @@ public class TelaListaOS extends VerticalLayout implements View {
 	
 	private Button buildUpdateButton(OrdemServico os) {
 		Button button = new Button(VaadinIcons.EDIT);
-		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		Set<OrdemServico> selectedItems = this.grid.getSelectedItems();
+		//button.addStyleName(ValoTheme.BUTTON_SMALL);
+		//Set<OrdemServico> selectedItems = this.grid.getSelectedItems();
 		
-		button.addClickListener(e -> Main.navigator.navigateTo(OrdemServicoFormViewForUpdate.VIEW_NAME+"/id=4"));
+		//button.addClickListener(e -> Main.navigator.navigateTo(OrdemServicoFormViewForUpdate.VIEW_NAME+"/id=4"));
 		return button;
 	}
 
