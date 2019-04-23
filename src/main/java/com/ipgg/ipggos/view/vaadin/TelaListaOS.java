@@ -17,35 +17,50 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class TelaListaOS extends VerticalLayout implements View {
-	
-	public static final String VIEW_NAME="lista_os_view";
+
+	public static final String VIEW_NAME = "lista_os_view";
 	private TextField campoPesquisa;
 	private Button pesquisar;
 	private Button criarOS;
+	private Button btnMsgs;
 	private Grid<OrdemServico> grid;
 	private Session session;
-	
+
 	public TelaListaOS() {
-		//List<OrdemChamado> listaOS = Arrays.asList();
+		// List<OrdemChamado> listaOS = Arrays.asList();
 		campoPesquisa = new TextField();
 		campoPesquisa.setWidth("80%");
 		campoPesquisa.setSizeFull();
 		pesquisar = new Button("Pesquisar");
 		criarOS = new Button("Nova O.S.");
+		btnMsgs = new Button("Mensagens");
 		grid = new Grid<>();
-		//tabela.setItems(listaOS);
-		
+		// tabela.setItems(listaOS);
+
 		Button visualizarOS = new Button("ICONE VISUALIZAR");
 		Button avaliarOS = new Button("ICONE AVALIAR");
 		Button feedbackOS = new Button("ICONE FEEDBACK");
-		
+
 		criarOS.addListener((e) -> Main.navigator.navigateTo(TelaSolicitacao.VIEW_NAME));
-		
+		btnMsgs.addListener(			
+					e -> {					
+						Set<OrdemServico> selectedItems = this.grid.getSelectedItems();
+						if (selectedItems.size() == 1) {
+							Main.navigator.navigateTo(TelaFeedBackListDeUmaOS.VIEW_NAME+"/"+selectedItems.iterator().next().getId().toString());							
+						} else if (selectedItems.size() == 0) {
+							Notification.show("SELECIONE UMA ORDEM DE SERVICO");
+						} else {
+							Notification.show("SELECIONE APENAS UMA ORDEM DE SERVICO, POR FAVOR.");
+						}
+						// Main.navigator.navigateTo(OrdemDeServico_FeedbacksListView.VIEW_NAME+"/id=4"));
+					});
+
 		grid.setCaption("Ordem de Chamado");
 		grid.setWidth("80%");
 		grid.setSizeFull();
@@ -55,33 +70,26 @@ public class TelaListaOS extends VerticalLayout implements View {
 		grid.addColumn(OrdemServico::getTipoServico).setCaption("Tipo Serviço");
 		grid.addColumn(OrdemServico::getGrauNecessidade).setCaption("Grau Necessidade");
 		grid.addColumn(OrdemServico::getStatus).setCaption("Status");
-		grid.addComponentColumn(this::buildUpdateButton).setCaption("Mensagens");
-		//tabela.addColumn("").setCaption("Ações");
-		
+		//grid.addComponentColumn(this::buildUpdateButton).setCaption("Mensagens");
+		// tabela.addColumn("").setCaption("Ações");
+
 		HorizontalLayout header = new HorizontalLayout();
 		header.addComponent(campoPesquisa);
 		header.addComponent(pesquisar);
 		header.addComponent(criarOS);
+		header.addComponent(btnMsgs);
 		header.setWidth("80%");
 		header.setSizeFull();
-		
+
 		addComponent(header);
 		addComponent(grid);
 	}
-	
-	private Button buildUpdateButton(OrdemServico os) {
-		Button button = new Button(VaadinIcons.EDIT);
-		//button.addStyleName(ValoTheme.BUTTON_SMALL);
-		//Set<OrdemServico> selectedItems = this.grid.getSelectedItems();
-		
-		//button.addClickListener(e -> Main.navigator.navigateTo(OrdemServicoFormViewForUpdate.VIEW_NAME+"/id=4"));
-		return button;
-	}
 
 	@Override
-	public void enter(ViewChangeEvent event) {	
+	public void enter(ViewChangeEvent event) {
 		this.session = HibernateUtil.getSessionFactory().openSession();
-		GenericHibernateDAOImp<OrdemServico, Long> dao = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);
+		GenericHibernateDAOImp<OrdemServico, Long> dao = new GenericHibernateDAOImp<>(session, OrdemServico.class,
+				Long.class);
 		List<OrdemServico> listOrdemServico = dao.ListarTodos();
 		listOrdemServico.forEach(item -> System.out.println(item));
 		this.grid.getDataProvider().refreshAll();
@@ -95,10 +103,5 @@ public class TelaListaOS extends VerticalLayout implements View {
 		this.session.close();
 		View.super.beforeLeave(event);
 	}
-	
-	
-	
-	
-	
-	
+
 }

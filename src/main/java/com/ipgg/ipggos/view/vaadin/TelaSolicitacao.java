@@ -29,7 +29,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 	private TextField solicitante;
 	private TextField gerencia;
 	private TextField diretoria;
-	private ComboBox<String> local;
+	private TextField local;
 	private ComboBox<String> servico;
 	private ComboBox<String> tipoServico;
 	private TextField bemPatrimonial;
@@ -70,7 +70,7 @@ public class TelaSolicitacao extends FormLayout implements View {
 		diretoria = new TextField("Diretoria");
 		binder.forField(diretoria).bind("diretoria");
 		
-		local = new ComboBox<>("Local");
+		local = new TextField("Local");
 		binder.forField(local).bind("local");
 		
 		servico = new ComboBox<>("Serviço Solicitado");
@@ -208,15 +208,15 @@ public class TelaSolicitacao extends FormLayout implements View {
 		confirmar.addClickListener((e)->{
 			
 			try {
-				this.binder.writeBean(this.ordemServico);
-				this.dao.beginTransaction();
-				this.dao.inserir(this.ordemServico);
-				this.dao.commit();
+
+				this.binder.writeBean(this.ordemServico);				
+				this.dao.inserir(this.ordemServico);				
 				
 				new Notification("Operacao Concluida com Sucesso",
 					    "Ordem de Servico Salva",
 					    Notification.Type.HUMANIZED_MESSAGE, true)
 					    .show(Page.getCurrent());
+				Main.navigator.navigateTo(TelaListaOS.VIEW_NAME);
 				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
@@ -250,15 +250,19 @@ public class TelaSolicitacao extends FormLayout implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		Session session = HibernateUtil.getSessionFactory().openSession();	
-		this.dao = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);		
+		this.dao = new GenericHibernateDAOImp<>(session, OrdemServico.class, Long.class);	
+		this.dao.beginTransaction(); //commit no event on leave
 	}
 	
 	@Override
 	public void beforeLeave(ViewBeforeLeaveEvent event) {
 		System.out.println("TelaSolicitacao -> public void beforeLeave(ViewBeforeLeaveEvent event) {...");
 		
+		this.dao.flushSession();
+		this.dao.commit();
 		this.dao.clearSession();
 		this.dao.closeSession();
+		
 		View.super.beforeLeave(event);
 	}
 

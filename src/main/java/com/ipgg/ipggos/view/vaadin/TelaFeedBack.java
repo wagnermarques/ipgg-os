@@ -11,7 +11,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 public class TelaFeedBack extends FormLayout implements View {
-	protected static final String VIEW_NAME = "tela_feedback";
+	public static final String VIEW_NAME = "tela_feedback";
 
 	private TextField nos;
 	private TextField gerencia;

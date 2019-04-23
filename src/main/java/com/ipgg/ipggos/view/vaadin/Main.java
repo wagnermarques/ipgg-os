@@ -2,6 +2,7 @@ package com.ipgg.ipggos.view.vaadin;
 
 import java.util.Locale;
 
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 
 import com.ipgg.ipggos.model.sistema.SistemaUsuario;
@@ -88,7 +89,16 @@ public class Main extends UI {
     	Label lbUserName = new Label("Usuario Logado = " + Main.getUserLoggedIn() == null ? Main.getUserLoggedIn().getLogin() : "?");
     	Button btnSair = new Button("Sair");
     	btnSair.addClickListener(e -> {
-    		new LogoutService().execute();    		
+    		//https://vaadin.com/docs/v8/framework/articles/HandlingLogout.html
+    		new LogoutService().execute();   
+    	    getUI().getSession().close();
+
+    	    // Invalidate underlying session instead if login info is stored there
+    	    VaadinService.getCurrentRequest().getWrappedSession().invalidate();
+    	    
+    	    // Redirect to avoid keeping the removed UI open in the browser
+    	    //getUI().getPage().setLocation(getLogoutPageLocation());
+    	    Main.navigator.navigateTo(LoginView.LOGIN_VIEW_NAME);
     	});
     	horizLayout4AppUserIdentification.addComponent(lbUserName);
     	horizLayout4AppUserIdentification.addComponent(btnSair);
@@ -146,6 +156,10 @@ public class Main extends UI {
 		navigator.addView(OrdemServicoFormViewForUpdate.VIEW_NAME, new OrdemServicoFormViewForUpdate());
 		
 		navigator.addView(OrdemDeServicoListViewForDeletion.VIEW_NAME, new OrdemDeServicoListViewForDeletion());
+		navigator.addView(TelaFeedBack.VIEW_NAME, new TelaFeedBack());
+		navigator.addView(TelaFeedBackListDeUmaOS.VIEW_NAME, new TelaFeedBackListDeUmaOS());
+		
+		
 						
 		navigator.addView(SistemaUsuarioListView.VIEW_NAME, new SistemaUsuarioListView());
 		navigator.addView(SistemaUsuarioFormViewForInsertion.VIEW_NAME, new SistemaUsuarioFormViewForInsertion());
@@ -170,7 +184,14 @@ public class Main extends UI {
 	}
 
     
-    @WebServlet(urlPatterns = "/*", name = "MainWindowServlet", asyncSupported = true)
+    @WebServlet(
+    		urlPatterns = "/*", 
+    		name = "MainWindowServlet", 
+    		asyncSupported = true,
+    		initParams= {
+    				//https://vaadin.com/docs/v8/framework/articles/CleaningUpResourcesInAUI.html
+    				@WebInitParam(name="heartbeatInterval",value="60")
+    		})
     @VaadinServletConfiguration(ui = Main.class, productionMode = false)
     public static class MainWindowServlet extends VaadinServlet {
     }

@@ -14,9 +14,9 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
      -->
 
      <property name="connection.driver_class">org.postgresql.Driver</property>
-      <property name="connection.url">jdbc:postgresql://localhost:5432/ipggos</property>
+      <property name="connection.url">jdbc:postgresql://192.168.0.143:5432/ipggos</property>
       <property name="connection.username">postgres</property>
-      <property name="connection.password">sessp*ipgg</property>
+      <property name="connection.password">sessp@ipgg</property>
  
       <!--
           JDBC connection pool (use the built-in)
@@ -48,15 +48,17 @@ Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration
       <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
  
 
-      <!-- Echo all executed SQL to stdout -->
+      <!-- Echo all executed SQL to stdout 
       <property name="show_sql">true</property>
-
+      -->
       
-      <!-- Database DDL behavior-->
+      <!-- Database DDL behavior    -->
       <property name="hibernate.hbm2ddl.auto">update</property>
-       <!-- 
+   
+       <!-- Be Carefully with this option, thiss will erase all of your data
       <property name="hibernate.hbm2ddl.auto">create-drop</property>
       -->
+      
       <mapping class="com.ipgg.ipggos.model.sistema.SistemaUsuario"/>
       <mapping class="com.ipgg.ipggos.model.sistema.SistemaUsuarioRole" />
       <mapping class="com.ipgg.ipggos.model.common.AvaliacaoOS" />      

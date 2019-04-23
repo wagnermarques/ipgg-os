@@ -48,7 +48,8 @@ public class GenericHibernateDAOImp<T,Pk extends Long> extends AbstrGenericHiber
 
 	@Override
 	public void alterar(T e) {
-		this.session.merge(e);		
+		this.session.merge(e);	
+		this.session.flush();
 	}
 
 	@Override

@@ -1,61 +1,49 @@
 package com.ipgg.ipggos.model.common;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.ipgg.ipggos.model.sistema.SistemaUsuario;
+
+@Entity
 public class FeedbackOS {
 
-	private String nos;
-	private String gerencia;
-	private String diretoria;
-	private String local;
-	private String servico;
-	private String tipoServico;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 	private String posicionamento;
+	private Date dta;
+	private SistemaUsuario u;
 
-	public String getNos() {
-		return nos;
+	
+
+	public SistemaUsuario getU() {
+		return u;
 	}
 
-	public void setNos(String nos) {
-		this.nos = nos;
+	public void setU(SistemaUsuario u) {
+		this.u = u;
 	}
 
-	public String getGerencia() {
-		return gerencia;
+	public Long getId() {
+		return id;
 	}
 
-	public void setGerencia(String gerencia) {
-		this.gerencia = gerencia;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getDiretoria() {
-		return diretoria;
+	public Date getDta() {
+		return dta;
 	}
 
-	public void setDiretoria(String diretoria) {
-		this.diretoria = diretoria;
-	}
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public String getServico() {
-		return servico;
-	}
-
-	public void setServico(String servico) {
-		this.servico = servico;
-	}
-
-	public String getTipoServico() {
-		return tipoServico;
-	}
-
-	public void setTipoServico(String tipoServico) {
-		this.tipoServico = tipoServico;
+	public void setDta(Date dta) {
+		this.dta = dta;
 	}
 
 	public String getPosicionamento() {

@@ -1,11 +1,16 @@
 package com.ipgg.ipggos.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.ipgg.ipggos.model.common.FeedbackOS;
 
 @Entity
 public class OrdemServico {
@@ -29,8 +34,19 @@ public class OrdemServico {
 	private String status;
 	private LocalDateTime momAbertura;
 	
+	@OneToMany
+	private List<FeedbackOS> feedbacks = new ArrayList<FeedbackOS>();
 	
 
+	public List<FeedbackOS> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public void setFeedbacks(List<FeedbackOS> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	
 	public LocalDateTime getMomAbertura() {
 		return momAbertura;
 	}

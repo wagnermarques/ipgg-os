@@ -13,6 +13,7 @@ import com.ipgg.ipggos.view.crudview.SistemaUsuarioListView;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForDeletion;
 import com.ipgg.ipggos.view.crudview.SistemaUsuarioListViewForUpdate;
 import com.ipgg.ipggos.view.vaadin.Main;
+import com.ipgg.ipggos.view.vaadin.TelaFeedBack;
 import com.ipgg.ipggos.view.vaadin.TelaListaOS;
 import com.ipgg.ipggos.view.vaadin.TelaSolicitacao;
 import com.ipgg.ipggos.view.vaadin.ViewComponentsStateController;
@@ -44,9 +45,18 @@ public class MenuPrincipal {
         
         MenuItem barItem_Crud_OrdemDeServico = mnuItemcadastro.addItem("Administrar Ordens de Servico",null,null);
         ViewComponentsStateController.registerMenuItem(barItem_Crud_OrdemDeServico);
+    
+        
+        MenuItem barItem_Crud_FeedBack = mnuItemcadastro.addItem("Administrar Feedbacks",null,null);
+        ViewComponentsStateController.registerMenuItem(barItem_Crud_FeedBack);
+        
         
         MenuItem barItem_Crud_Pessoa = mnuItemcadastro.addItem("Cadastro de Pessoas",null,null);
         ViewComponentsStateController.registerMenuItem(barItem_Crud_Pessoa);
+        
+        
+        MenuItem mnuItem_CRIAR_FEEDBACK = barItem_Crud_FeedBack.addItem("Criar Feedback",null,null);
+        mnuItem_CRIAR_FEEDBACK.setCommand((selectedItem) -> Main.navigator.navigateTo(TelaFeedBack.VIEW_NAME));
         
         
         //####### Items do menu CADASTRO
